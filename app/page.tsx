@@ -14,7 +14,7 @@ export default function MainPage() {
 
     setTimeout(() => {
       router.push(`/${section}`);
-    }, 1000); // 애니메이션 지속 시간과 일치
+    }, 500); // 애니메이션 지속 시간과 일치
   };
   useEffect(() => {
     const circle = document.getElementById("circle");
