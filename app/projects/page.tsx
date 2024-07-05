@@ -25,10 +25,9 @@ export default function Projects() {
     const circle = document.getElementById("circle");
 
     if (circle) {
-      const onMouseMove = (e: { clientX: number; clientY: number }) => {
-        circle.style.transform = `translate(${e.clientX}px, ${
-          e.clientY + window.scrollY
-        }px)`;
+      const onMouseMove = (e: MouseEvent) => {
+        circle.style.left = `${e.clientX}px`;
+        circle.style.top = `${e.clientY + window.scrollY}px`;
       };
       document.addEventListener("mousemove", onMouseMove);
 
