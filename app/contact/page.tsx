@@ -32,12 +32,30 @@ export default function Contact() {
     };
   });
 
+  useEffect(() => {
+    const circle = document.getElementById("circle");
+
+    if (circle) {
+      const onMouseMove = (e: { clientX: number; clientY: number }) => {
+        circle.style.transform = `translate(${e.clientX}px, ${
+          e.clientY + window.scrollY
+        }px)`;
+      };
+      document.addEventListener("mousemove", onMouseMove);
+
+      return () => {
+        document.removeEventListener("mousemove", onMouseMove);
+      };
+    }
+  }, []);
+
   const handleIconClick = (url: string) => {
     window.open(url, "_blank");
   };
 
   return (
-    <div className="w-[100vw] h-screen overflow-auto">
+    <div className="w-[100vw] h-screen overflow-auto relative">
+      <div id="circle" className="circle"></div>
       <div
         id="contact-page"
         className="w-full h-[100vh] flex justify-center items-center bg-black text-white"
