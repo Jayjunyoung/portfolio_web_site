@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { projectInfo } from "@/mock/projectInfo";
 import { FaGithub } from "react-icons/fa";
 
-export default function Projects() {
+export default function ProjectsPage() {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 

@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { FaGithub, FaBloggerB, FaEnvelope } from "react-icons/fa";
 
-export default function Contact() {
+export default function ContactPage() {
   useEffect(() => {
     const pageElement = document.getElementById("contact-page");
     const titleElement = document.getElementById("contact-title");
@@ -36,7 +36,7 @@ export default function Contact() {
     const circle = document.getElementById("circle");
 
     if (circle) {
-      const onMouseMove = (e: { clientX: number; clientY: number }) => {
+      const onMouseMove = (e: MouseEvent) => {
         circle.style.transform = `translate(${e.clientX}px, ${
           e.clientY + window.scrollY
         }px)`;
