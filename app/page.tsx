@@ -20,7 +20,7 @@ export default function MainPage() {
     const circle = document.getElementById("circle");
 
     if (circle) {
-      const onMouseMove = (e: { clientX: number; clientY: number }) => {
+      const onMouseMove = (e: MouseEvent) => {
         circle.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
       };
       document.addEventListener("mousemove", onMouseMove);

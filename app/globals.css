@@ -64,6 +64,8 @@ body {
 
 #circle {
   position: fixed;
+  top: -10px;
+  left: -10px;
   width: 15px;
   height: 15px;
   background-color: white;
