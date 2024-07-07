@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
+import { introductionTexts } from "@/mock/aboutInfo";
+import { stacksInfo } from "@/mock/aboutInfo";
 
 export default function AboutPage() {
   useEffect(() => {
@@ -22,7 +24,7 @@ export default function AboutPage() {
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, []); // 의존성 배열 추가
+  }, []);
 
   useEffect(() => {
     const circle = document.getElementById("circle");
@@ -55,48 +57,65 @@ export default function AboutPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  const introductionTexts = [
-    "안녕하세요, 저는 배움이 취미인 프론트엔드 개발자 정준영 입니다.",
-    "하루에 개발한 내용과 알고리즘 문제 해결 과정을 블로그로 작성 중 입니다.",
-    "프론트엔드 개발 직무를 목표로 공부하고 있습니다.",
-    "하루에 해야 할 태스크를 일정관리 툴로 작성하여 계획적으로 완료하는 성격을 가지고 있습니다.",
-  ];
-
   return (
     <div
       id="about-page"
-      className="w-[100vw] h-screen flex flex-col justify-center items-center bg-black text-white overflow-scroll relative"
+      className="w-[100vw] h-screen bg-black text-white overflow-scroll"
     >
-      <div id="circle" className="hidden circle"></div>
-      <h1 id="intro-text" className="text-4xl mb-2">
-        About Me💻
-      </h1>
-      <div
-        id="profile"
-        className="hidden flex-row justify-center w-[880px] h-auto"
-      >
-        <img
-          src="/profile.jpg"
-          alt="Profile Picture"
-          className="w-2/4 h-full rounded-lg shadow-lg"
-        />
-        <div className="flex flex-col w-2/4 h-full justify-center items-start ml-14 text-xl antialiased">
-          <span className="h-auto text-left mt-5">
-            안녕하세요, 저는{" "}
-            <span id="highlight-text" className="highlight-text relative">
-              배움이 취미인
-              <img
-                src="/arrow.png"
-                alt="Arrow"
-                className="absolute left-[45px] top-[-25px] w-[20px] transform rotate-45"
-              />
-            </span>{" "}
-            프론트엔드 개발자 정준영 입니다.
-          </span>
-          {introductionTexts.slice(1).map((text, index) => (
-            <span key={index} className="h-auto text-left mt-5 intro-text">
-              {text}
+      <div className="flex flex-col justify-center items-center min-h-screen">
+        <div id="circle" className="hidden circle"></div>
+        <h1 id="intro-text" className="text-4xl mb-2">
+          About Me💻
+        </h1>
+        <div
+          id="profile"
+          className="hidden flex-row justify-center w-[880px] h-[587px]"
+        >
+          <img
+            src="/profile.jpg"
+            alt="Profile Picture"
+            className="w-2/4 h-full rounded-lg shadow-lg"
+          />
+          <div className="flex flex-col w-2/4 h-full justify-center items-start ml-14 text-xl antialiased">
+            <span className="h-auto text-left mt-5">
+              안녕하세요, 저는{" "}
+              <span id="highlight-text" className="highlight-text relative">
+                배움이 취미인
+                <img
+                  src="/arrow.png"
+                  alt="Arrow"
+                  className="absolute left-[45px] top-[-25px] w-[20px] transform rotate-45"
+                />
+              </span>{" "}
+              프론트엔드 개발자 정준영 입니다.
             </span>
+            {introductionTexts.slice(1).map((text, index) => (
+              <span key={index} className="h-auto text-left mt-5 intro-text">
+                {text}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="w-full h-auto bg-gray-800 text-white py-10">
+        <div className="text-center mb-6">
+          <h2 className="text-3xl">Tech Stack</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 px-10">
+          {stacksInfo.map((info, index) => (
+            <div
+              key={index}
+              className="bg-gray-700 p-5 rounded-lg shadow-lg w-auto"
+            >
+              <h3 className="text-2xl text-center mb-4">{info.category}</h3>
+              <ul className="list-disc list-inside">
+                {info.stacks.map((stack, idx) => (
+                  <li key={idx} className="text-lg">
+                    {stack}
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
       </div>
