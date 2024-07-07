@@ -1,16 +1,17 @@
-interface AboutInfos {
+export interface IntroductionInfo {
   introductionTexts: string[];
   stacksInfo: { category: string; stacks: string[] }[];
+  experienceInfo: { title: string; period: string; details: string[] }[];
 }
 
-export const introductionTexts: AboutInfos["introductionTexts"] = [
+export const introductionTexts = [
   "안녕하세요, 저는 배움이 취미인 프론트엔드 개발자 정준영 입니다.",
   "하루에 개발한 내용과 알고리즘 문제 해결 과정을 블로그로 작성 중 입니다.",
   "프론트엔드 개발 직무를 목표로 공부하고 있습니다.",
   "하루에 해야 할 태스크를 일정관리 툴로 작성하여 계획적으로 완료하는 성격을 가지고 있습니다.",
 ];
 
-export const stacksInfo: AboutInfos["stacksInfo"] = [
+export const stacksInfo = [
   {
     category: "Framework",
     stacks: ["React.js", "Next.js"],
@@ -26,5 +27,41 @@ export const stacksInfo: AboutInfos["stacksInfo"] = [
   {
     category: "CSS",
     stacks: ["tailwind.css", "Styled-component"],
+  },
+];
+
+export const experienceInfo = [
+  {
+    title: "UMC TUK 6기",
+    period: "2024.03.23 ~ 2024.08.31",
+    details: ["IT 연합 동아리", "한국공학대학교 WEB 파트 스터디장"],
+  },
+  {
+    title: "GDSC TUK 1기",
+    period: "2022.10.07 ~ 2023.08.31",
+    details: [
+      "Google Developer Student Clubs 동아리",
+      "FrontEnd 담당으로 2개의 프로젝트 진행",
+      "React.js, TypeScript 등 스터디에 참여하여 프론트엔드 개발 학습",
+    ],
+  },
+  {
+    title: "CBU TUK 20기",
+    period: "2024.03.02 ~ 진행 중",
+    details: [
+      "교내 코딩/개발 동아리",
+      "Open API를 이용하는 React 스터디 참여 - 개인 프로젝트 작업 중",
+      "4학년 1학기 기간 동안 프로젝트 진행",
+    ],
+  },
+  {
+    title: "스페인 해외현장실습",
+    period: "2023.06.30 ~ 2023.08.27",
+    details: [
+      "스페인 패션/마케팅 기업 Miquel Suay 해외현장실습",
+      "메인화면 퍼블리싱 담당",
+      "태블릿, 모바일 디바이스에 따른 반응형 디자인 구현",
+      "Trello, Figma를 활용한 협업 및 커뮤니케이션 경험 有",
+    ],
   },
 ];

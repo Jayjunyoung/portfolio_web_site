@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
-import { introductionTexts } from "@/mock/aboutInfo";
-import { stacksInfo } from "@/mock/aboutInfo";
+import {
+  introductionTexts,
+  experienceInfo,
+  stacksInfo,
+} from "@/mock/aboutInfo";
 
 export default function AboutPage() {
   useEffect(() => {
@@ -119,6 +122,35 @@ export default function AboutPage() {
               </ul>
             </div>
           ))}
+        </div>
+      </div>
+      <div className="w-full h-auto bg-gray-700 text-white py-10">
+        <div className="text-center mb-6">
+          <h2 className="text-3xl">Experience🎈</h2>
+        </div>
+        <hr className="w-[80%] my-10 mx-auto border-gray-600" />
+        <div className="flex justify-center items-center w-full h-auto px-10 gap-10">
+          {experienceInfo.map((experience, index) => (
+            <div key={index} className="mb-6 max-w-[450px] min-h-[180px]">
+              <h3 className="text-2xl font-bold">{experience.title}</h3>
+              <span className="text-gray-400">{experience.period}</span>
+              <ul className="list-disc list-inside mt-2">
+                {experience.details.map((detail, idx) => (
+                  <li key={idx}>{detail}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="w-full h-auto bg-gray-900 text-white py-10">
+        <div className="text-center mb-6">
+          <h2 className="text-3xl">Education🎓</h2>
+        </div>
+      </div>
+      <div className="w-full h-auto bg-gray-400 text-white py-10">
+        <div className="text-center mb-6">
+          <h2 className="text-3xl">Certificate🪪</h2>
         </div>
       </div>
       <style jsx>{`

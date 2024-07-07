@@ -76,7 +76,7 @@ export default function ContactPage() {
             </div>
             <div className="icon-wrapper">
               <img
-                src="./simple-icons_tistory.png"
+                src="https://t1.daumcdn.net/cfile/tistory/9935084A5B9541D014"
                 className="icon w-full h-full"
                 onClick={() =>
                   handleIconClick("https://no2jfamily.tistory.com/")
