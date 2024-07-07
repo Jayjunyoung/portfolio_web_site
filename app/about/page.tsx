@@ -99,7 +99,7 @@ export default function AboutPage() {
       </div>
       <div className="w-full h-auto bg-gray-800 text-white py-10">
         <div className="text-center mb-6">
-          <h2 className="text-3xl">Tech Stack</h2>
+          <h2 className="text-3xl">Tech Stack👨‍🔧</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 px-10">
           {stacksInfo.map((info, index) => (
@@ -107,7 +107,9 @@ export default function AboutPage() {
               key={index}
               className="bg-gray-700 p-5 rounded-lg shadow-lg w-auto"
             >
-              <h3 className="text-2xl text-center mb-4">{info.category}</h3>
+              <h3 className="text-2xl text-center mb-4 font-bold">
+                {info.category}
+              </h3>
               <ul className="list-disc list-inside">
                 {info.stacks.map((stack, idx) => (
                   <li key={idx} className="text-lg">
