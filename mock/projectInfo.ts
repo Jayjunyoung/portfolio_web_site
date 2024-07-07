@@ -2,6 +2,7 @@ interface projectInfoProps {
   projectName: string;
   tasks: string[];
   stacks: string[];
+  githubUrl: string;
 }
 
 export const projectInfo: Array<projectInfoProps> = [
@@ -21,6 +22,7 @@ export const projectInfo: Array<projectInfoProps> = [
       "zustand",
       "daisy-ui",
     ],
+    githubUrl: "https://github.com/TU-GitLio/frontend",
   },
   {
     projectName: "GDSC TUK Notion",
@@ -33,6 +35,8 @@ export const projectInfo: Array<projectInfoProps> = [
       "Typescript",
       "zustand",
     ],
+    githubUrl:
+      "https://github.com/Google-Developer-Student-Clubs-TUK/2024-Next.js-project-Daum",
   },
   {
     projectName: "Our_Trip_Route",
@@ -51,5 +55,6 @@ export const projectInfo: Array<projectInfoProps> = [
       "zustand",
       "mui",
     ],
+    githubUrl: "https://github.com/Jayjunyoung/Our_Trip_Route",
   },
 ];

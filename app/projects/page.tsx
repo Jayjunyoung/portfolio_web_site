@@ -77,9 +77,7 @@ export default function ProjectsPage() {
               >
                 <FaGithub
                   className={`text-3xl cursor-pointer hover:scale-125 transform transition 0.2s`}
-                  onClick={() =>
-                    handleIconClick("https://github.com/jayjunyoung")
-                  }
+                  onClick={() => handleIconClick(project.githubUrl)}
                 />
               </div>
             </div>
