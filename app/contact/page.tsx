@@ -65,21 +65,39 @@ export default function ContactPage() {
             Contact
           </h1>
           <div className="icons-container">
-            <FaGithub
-              className="icon w-full h-full"
-              onClick={() => handleIconClick("https://github.com/jayjunyoung")}
-            />
-            <img
-              src="./simple-icons_tistory.png"
-              className="icon w-full h-full"
-              onClick={() => handleIconClick("https://no2jfamily.tistory.com/")}
-            />
-            <FaEnvelope className="icon w-full h-full" />
-            <img
-              src="./skill-icons_instagram.png"
-              className="icon w-full h-full"
-              onClick={() => handleIconClick("https://instagram.com/junzero.e")}
-            />
+            <div className="icon-wrapper">
+              <FaGithub
+                className="icon w-full h-full"
+                onClick={() =>
+                  handleIconClick("https://github.com/jayjunyoung")
+                }
+              />
+              <span className="icon-text">GitHub</span>
+            </div>
+            <div className="icon-wrapper">
+              <img
+                src="./simple-icons_tistory.png"
+                className="icon w-full h-full"
+                onClick={() =>
+                  handleIconClick("https://no2jfamily.tistory.com/")
+                }
+              />
+              <span className="icon-text">Tistory</span>
+            </div>
+            <div className="icon-wrapper">
+              <FaEnvelope className="icon w-full h-full" />
+              <span className="icon-text">Email</span>
+            </div>
+            <div className="icon-wrapper">
+              <img
+                src="./skill-icons_instagram.png"
+                className="icon w-full h-full"
+                onClick={() =>
+                  handleIconClick("https://instagram.com/junzero.e")
+                }
+              />
+              <span className="icon-text">Instagram</span>
+            </div>
           </div>
         </div>
       </div>
@@ -144,14 +162,32 @@ export default function ContactPage() {
           }
         }
 
-        .icon {
-          font-size: 50px;
+        .icon-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 85%;
+          height: 85%;
           transition: transform 0.3s;
           cursor: pointer;
         }
 
-        .icon:hover {
+        .icon-wrapper:hover .icon {
           transform: scale(1.25);
+        }
+
+        .icon-wrapper:hover .icon-text {
+          opacity: 1;
+        }
+
+        .icon {
+          font-size: 50px;
+        }
+
+        .icon-text {
+          opacity: 0;
+          transition: opacity 0.3s;
+          margin-top: 25px;
         }
 
         .icons-container:hover {
