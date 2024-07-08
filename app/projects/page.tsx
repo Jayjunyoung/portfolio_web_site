@@ -6,7 +6,6 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export default function ProjectsPage() {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [currentSlide, setCurrentSlide] = useState<number[]>([]);
   const [showMessage, setShowMessage] = useState<boolean>(false);
@@ -99,7 +98,7 @@ export default function ProjectsPage() {
               }`}
               onClick={() => handleCardClick(index)}
             >
-              <div className="card-front">
+              <div className="card-front relative w-full h-full">
                 <h2 className="text-2xl text-center mb-4">
                   {project.projectName}
                 </h2>
@@ -115,11 +114,7 @@ export default function ProjectsPage() {
                     <li key={idx}>{stack}</li>
                   ))}
                 </ul>
-                <div
-                  className="fixed bottom-8 right-5 h-[20px] px-2"
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                >
+                <div className="absolute bottom-2 right-5 h-auto px-2">
                   <FaGithub
                     className={`text-3xl cursor-pointer hover:scale-125 transform transition 0.2s`}
                     onClick={() => handleIconClick(project.githubUrl)}
