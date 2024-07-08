@@ -3,6 +3,7 @@ interface projectInfoProps {
   tasks: string[];
   stacks: string[];
   githubUrl: string;
+  images: string[];
 }
 
 export const projectInfo: Array<projectInfoProps> = [
@@ -22,6 +23,7 @@ export const projectInfo: Array<projectInfoProps> = [
       "zustand",
       "daisy-ui",
     ],
+    images: ["/GitLio1.png", "/GitLio2.png"],
     githubUrl: "https://github.com/TU-GitLio/frontend",
   },
   {
@@ -35,6 +37,7 @@ export const projectInfo: Array<projectInfoProps> = [
       "Typescript",
       "zustand",
     ],
+    images: ["/tukNotion1.png", "/tukNotion2.png"],
     githubUrl:
       "https://github.com/Google-Developer-Student-Clubs-TUK/2024-Next.js-project-Daum",
   },
@@ -55,6 +58,7 @@ export const projectInfo: Array<projectInfoProps> = [
       "zustand",
       "mui",
     ],
+    images: ["tripRoute1.png", "tripRoute2.png", "tripRoute3.png"],
     githubUrl: "https://github.com/Jayjunyoung/Our_Trip_Route",
   },
 ];
