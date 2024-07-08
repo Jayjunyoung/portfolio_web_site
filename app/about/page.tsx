@@ -1,13 +1,30 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import {
   introductionTexts,
   experienceInfo,
   stacksInfo,
+  educationInfo,
+  certificateInfo,
 } from "@/mock/aboutInfo";
 
 export default function AboutPage() {
+  useEffect(() => {
+    const sections = document.querySelectorAll(".section");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    });
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     const pageElement = document.getElementById("about-page");
     if (pageElement) {
@@ -100,7 +117,7 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
-      <div className="w-full h-auto bg-gray-800 text-white py-10">
+      <div className="w-full h-auto bg-gray-800 text-white py-10 section">
         <div className="text-center mb-6">
           <h2 className="text-3xl">Tech Stack👨‍🔧</h2>
         </div>
@@ -124,7 +141,8 @@ export default function AboutPage() {
           ))}
         </div>
       </div>
-      <div className="w-full h-auto bg-gray-700 text-white py-10">
+
+      <div className="w-full h-auto bg-gray-700 text-white py-10 section">
         <div className="text-center mb-6">
           <h2 className="text-3xl">Experience🎈</h2>
         </div>
@@ -143,17 +161,70 @@ export default function AboutPage() {
           ))}
         </div>
       </div>
-      <div className="w-full h-auto bg-gray-900 text-white py-10">
+
+      <div className="relative w-full h-[400px] py-10 section">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-40"
+          style={{
+            backgroundImage: "url('/tuk.png')",
+          }}
+        ></div>
         <div className="text-center mb-6">
           <h2 className="text-3xl">Education🎓</h2>
         </div>
+        <div className="flex justify-center items-center w-full h-auto px-10 gap-10">
+          {educationInfo.map((education, index) => (
+            <div
+              key={index}
+              className="flex flex-col justify-center max-w-[650px] min-h-[180px]"
+            >
+              <h3 className="text-2xl font-bold">{education.institution}</h3>
+              <span className="text-gray-400">{education.period}</span>
+              <ul className="list-disc list-inside mt-2">
+                {education.details.map((detail, idx) => (
+                  <li key={idx}>{detail}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="w-full h-auto bg-gray-400 text-white py-10">
+
+      <div className="w-full h-auto bg-gray-400 text-white py-10 section">
         <div className="text-center mb-6">
           <h2 className="text-3xl">Certificate🪪</h2>
         </div>
+        <div className="flex flex-col items-center w-full h-auto px-10 gap-10">
+          {certificateInfo.map((certificate, index) => (
+            <div
+              key={index}
+              className="mb-6 min-w-[650px] min-h-[180px] bg-gray-700 p-6 rounded-lg shadow-lg"
+            >
+              <h3 className="text-2xl text-center font-bold mb-4">
+                {certificate.title}
+              </h3>
+              <ul className="list-disc list-inside">
+                {certificate.details.map((detail, idx) => (
+                  <li key={idx} className="text-lg">
+                    {detail}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
       <style jsx>{`
+        .fade-in {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
         .page-fade-in {
           animation: pageFadeIn 1s forwards;
         }
@@ -221,6 +292,14 @@ export default function AboutPage() {
           100% {
             opacity: 1;
           }
+        }
+
+        .section {
+          opacity: 0;
+          transition: opacity 1s ease-in-out;
+        }
+        .section.show {
+          opacity: 1;
         }
       `}</style>
     </div>

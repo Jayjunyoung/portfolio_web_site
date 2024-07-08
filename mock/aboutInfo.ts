@@ -2,16 +2,18 @@ export interface IntroductionInfo {
   introductionTexts: string[];
   stacksInfo: { category: string; stacks: string[] }[];
   experienceInfo: { title: string; period: string; details: string[] }[];
+  educationInfo: { institution: string; period: string; details: string[] }[];
+  certificateInfo: { title: string; details: string[] }[];
 }
 
-export const introductionTexts = [
+export const introductionTexts: IntroductionInfo["introductionTexts"] = [
   "안녕하세요, 저는 배움이 취미인 프론트엔드 개발자 정준영 입니다.",
   "하루에 개발한 내용과 알고리즘 문제 해결 과정을 블로그로 작성 중 입니다.",
   "프론트엔드 개발 직무를 목표로 공부하고 있습니다.",
   "하루에 해야 할 태스크를 일정관리 툴로 작성하여 계획적으로 완료하는 성격을 가지고 있습니다.",
 ];
 
-export const stacksInfo = [
+export const stacksInfo: IntroductionInfo["stacksInfo"] = [
   {
     category: "Framework",
     stacks: ["React.js", "Next.js"],
@@ -30,7 +32,7 @@ export const stacksInfo = [
   },
 ];
 
-export const experienceInfo = [
+export const experienceInfo: IntroductionInfo["experienceInfo"] = [
   {
     title: "UMC TUK 6기",
     period: "2024.03.23 ~ 2024.08.31",
@@ -62,6 +64,31 @@ export const experienceInfo = [
       "메인화면 퍼블리싱 담당",
       "태블릿, 모바일 디바이스에 따른 반응형 디자인 구현",
       "Trello, Figma를 활용한 협업 및 커뮤니케이션 경험 有",
+    ],
+  },
+];
+
+export const educationInfo: IntroductionInfo["educationInfo"] = [
+  {
+    institution: "한국공학대학교",
+    period: "2018.03 ~ 2025.02",
+    details: [
+      "IT경영학과 전공",
+      "컴퓨터공학과 자료구조 전공 과목 수강 경험 有 → Mentoring 담당",
+      "부스트코스 CS50 강의 수강(CS 지식 학습 응용)",
+    ],
+  },
+];
+
+export const certificateInfo: IntroductionInfo["certificateInfo"] = [
+  {
+    title: "자격증",
+    details: [
+      "정보처리산업기사",
+      "컴퓨터활용능력1급",
+      "한국사능력검정시험1급",
+      "정보처리기사 필기 합격 - 실기 시험(07/28)",
+      "OPIc IM2",
     ],
   },
 ];
