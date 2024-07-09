@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaGithub, FaBloggerB, FaEnvelope } from "react-icons/fa";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ContactPage() {
+  const [showPopup, setShowPopup] = useState<boolean>(false);
   useEffect(() => {
     const pageElement = document.getElementById("contact-page");
     const titleElement = document.getElementById("contact-title");
@@ -53,6 +56,15 @@ export default function ContactPage() {
     window.open(url, "_blank");
   };
 
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setShowPopup(true);
+      setTimeout(() => {
+        setShowPopup(false);
+      }, 3000); // 3초 후에 팝업 사라짐
+    });
+  };
+
   return (
     <div className="w-[100vw] h-screen overflow-auto relative">
       <div id="circle" className="circle"></div>
@@ -85,7 +97,10 @@ export default function ContactPage() {
               <span className="icon-text">Tistory</span>
             </div>
             <div className="icon-wrapper">
-              <FaEnvelope className="icon w-full h-full" />
+              <FaEnvelope
+                className="icon w-full h-full"
+                onClick={() => copyToClipboard("no2jfamily@gmail.com")}
+              />
               <span className="icon-text">Email</span>
             </div>
             <div className="icon-wrapper">
@@ -108,6 +123,27 @@ export default function ContactPage() {
           <p>✉️: no2jfamily@gmail.com</p>
         </div>
       </div>
+      {showPopup && (
+        <div
+          role="alert"
+          className="fixed left-10 bottom-10 alert alert-success shadow-lg bg-green-500 text-white z-20 rounded-md p-8"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 shrink-0 stroke-current"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span>Email address copied to clipboard</span>
+        </div>
+      )}
       <style jsx>{`
         .page-slide-in {
           animation: slideIn 1s forwards;
