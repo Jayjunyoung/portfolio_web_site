@@ -102,6 +102,15 @@ export default function ProjectsPage() {
                 <h2 className="text-2xl text-center mb-4">
                   {project.projectName}
                 </h2>
+                <div className="text-sm text-center mb-4 w-full">
+                  {project.summary}
+                </div>
+                <div className="text-sm text-center mb-6 w-full text-sky-200 font-bold">
+                  📆 작업기간 : {project.period}
+                </div>
+                <div className="text-sm mb-6 w-full font-black">
+                  🙋🏻 인원 : {project.members}명
+                </div>
                 <h3 className="text-xl mb-2">Tasks</h3>
                 <ul className="list-disc list-inside mb-4 min-h-[72px]">
                   {project.tasks.map((task, idx) => (
