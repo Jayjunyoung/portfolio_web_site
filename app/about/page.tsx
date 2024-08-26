@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useFollowMouse } from "@/hooks/useFollowMove";
 import {
-  introductionTexts,
-  experienceInfo,
-  stacksInfo,
-  educationInfo,
   certificateInfo,
+  educationInfo,
+  experienceInfo,
+  introductionTexts,
+  stacksInfo,
 } from "@/mock/aboutInfo";
+import { useEffect } from "react";
 
 export default function AboutPage() {
   useEffect(() => {
@@ -46,31 +47,18 @@ export default function AboutPage() {
     return () => clearTimeout(timer);
   }, []);
 
+  useFollowMouse("circle");
+
   useEffect(() => {
-    const circle = document.getElementById("circle");
-
     const timer = setTimeout(() => {
-      if (circle) {
-        circle.classList.remove("hidden");
-        const onMouseMove = (e: MouseEvent) => {
-          circle.style.left = `${e.clientX}px`;
-          circle.style.top = `${e.clientY + window.scrollY}px`;
-        };
-        document.addEventListener("mousemove", onMouseMove);
-
-        const highlightText = document.getElementById("highlight-text");
-        if (highlightText) {
-          highlightText.addEventListener("mouseenter", () => {
-            highlightText.classList.add("highlight");
-          });
-          highlightText.addEventListener("mouseleave", () => {
-            highlightText.classList.remove("highlight");
-          });
-        }
-
-        return () => {
-          document.removeEventListener("mousemove", onMouseMove);
-        };
+      const highlightText = document.getElementById("highlight-text");
+      if (highlightText) {
+        highlightText.addEventListener("mouseenter", () => {
+          highlightText.classList.add("highlight");
+        });
+        highlightText.addEventListener("mouseleave", () => {
+          highlightText.classList.remove("highlight");
+        });
       }
     }, 3000);
 

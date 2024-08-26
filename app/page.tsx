@@ -1,8 +1,9 @@
 "use client";
 
 import Header from "@/components/Header";
-import { useEffect } from "react";
+import { useFollowMouse } from "@/hooks/useFollowMove";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function MainPage() {
   const router = useRouter();
@@ -16,20 +17,8 @@ export default function MainPage() {
       router.push(`/${section}`);
     }, 500); // 애니메이션 지속 시간과 일치
   };
-  useEffect(() => {
-    const circle = document.getElementById("circle");
 
-    if (circle) {
-      const onMouseMove = (e: MouseEvent) => {
-        circle.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-      };
-      document.addEventListener("mousemove", onMouseMove);
-
-      return () => {
-        document.removeEventListener("mousemove", onMouseMove);
-      };
-    }
-  }, []);
+  useFollowMouse("circle");
 
   useEffect(() => {
     const fadeInElements = document.querySelectorAll(".fade-in");

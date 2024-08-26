@@ -1,8 +1,8 @@
 "use client";
 
+import { useFollowMouse } from "@/hooks/useFollowMove";
 import { useEffect, useState } from "react";
-import { FaGithub, FaBloggerB, FaEnvelope } from "react-icons/fa";
-import { toast, ToastContainer } from "react-toastify";
+import { FaEnvelope, FaGithub } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function ContactPage() {
@@ -35,22 +35,7 @@ export default function ContactPage() {
     };
   });
 
-  useEffect(() => {
-    const circle = document.getElementById("circle");
-
-    if (circle) {
-      const onMouseMove = (e: MouseEvent) => {
-        circle.style.transform = `translate(${e.clientX}px, ${
-          e.clientY + window.scrollY
-        }px)`;
-      };
-      document.addEventListener("mousemove", onMouseMove);
-
-      return () => {
-        document.removeEventListener("mousemove", onMouseMove);
-      };
-    }
-  }, []);
+  useFollowMouse("circle"); // useEffect 공식문서 읽고 커스텀 훅 적용
 
   const handleIconClick = (url: string) => {
     window.open(url, "_blank");

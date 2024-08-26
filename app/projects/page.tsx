@@ -1,6 +1,7 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useFollowMouse } from "@/hooks/useFollowMove";
 import { projectInfo } from "@/mock/projectInfo";
+import { useEffect, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
@@ -30,21 +31,7 @@ export default function ProjectsPage() {
     }
   }, [isLoaded]);
 
-  useEffect(() => {
-    const circle = document.getElementById("circle");
-
-    if (circle) {
-      const onMouseMove = (e: MouseEvent) => {
-        circle.style.left = `${e.clientX}px`;
-        circle.style.top = `${e.clientY + window.scrollY}px`;
-      };
-      document.addEventListener("mousemove", onMouseMove);
-
-      return () => {
-        document.removeEventListener("mousemove", onMouseMove);
-      };
-    }
-  }, []);
+  useFollowMouse("circle");
 
   useEffect(() => {
     setCurrentSlide(new Array(projectInfo.length).fill(0));
