@@ -8,8 +8,7 @@ export interface IntroductionInfo {
 
 export const introductionTexts: IntroductionInfo["introductionTexts"] = [
   "안녕하세요, 저는 배움이 취미인 프론트엔드 개발자 정준영 입니다.",
-  "하루에 개발한 내용과 알고리즘 문제 해결 과정을 블로그로 작성 중 입니다.",
-  "프론트엔드 개발 직무를 목표로 공부하고 있습니다.",
+  "프론트엔드 개발 내용과 알고리즘 문제 해결 과정을 블로그로 작성 중이고 현재 90개 이상의 블로그를 작성했습니다.",
   "하루에 해야 할 태스크를 일정관리 툴로 작성하여 계획적으로 완료하는 성격을 가지고 있습니다.",
 ];
 
@@ -85,9 +84,9 @@ export const certificateInfo: IntroductionInfo["certificateInfo"] = [
     title: "자격증",
     details: [
       "정보처리산업기사",
-      "컴퓨터활용능력1급",
-      "한국사능력검정시험1급",
-      "정보처리기사 필기 합격 - 실기 시험(07/28)",
+      "컴퓨터활용능력 1급",
+      "한국사능력검정시험 1급",
+      "정보처리기사",
       "OPIc IM2",
     ],
   },
