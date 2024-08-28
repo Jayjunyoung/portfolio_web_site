@@ -14,6 +14,14 @@ export default function ProjectsPage() {
   const projectsPerPage = 3; // 슬라이드당 보여줄 프로젝트 개수는 3개로 설정 완료!
   const totalGroups = Math.ceil(projectInfo.length / projectsPerPage);
 
+  // 이미지 프리로딩 함수 구현 완료
+  const preloadImages = (imageUrls: string[]) => {
+    imageUrls.forEach((url) => {
+      const img = new Image();
+      img.src = url;
+    });
+  };
+
   useEffect(() => {
     const pageElement = document.getElementById("project-page");
 
@@ -38,6 +46,9 @@ export default function ProjectsPage() {
 
   useEffect(() => {
     setCurrentSlide(new Array(projectInfo.length).fill(0));
+    projectInfo.forEach((project) => {
+      preloadImages(project.images);
+    });
   }, []);
 
   const handleIconClick = (url: string) => {
