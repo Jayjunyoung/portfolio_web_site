@@ -81,7 +81,7 @@ body {
 }
 
 .open-envelope {
-  animation: openEnvelope 1s forwards;
+  animation: openEnvelope 0.5s forwards;
 }
 
 @keyframes openEnvelope {
