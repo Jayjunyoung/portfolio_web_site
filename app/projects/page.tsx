@@ -94,6 +94,7 @@ export default function ProjectsPage() {
   const handleNextGroup = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
+    e.stopPropagation();
     setCurrentGroup((prevGroup) =>
       prevGroup < totalGroups - 1 ? prevGroup + 1 : 0
     );
