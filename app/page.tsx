@@ -89,7 +89,7 @@ export default function MainPage() {
 
     const starMaterial = new THREE.PointsMaterial({
       vertexColors: true,
-      size: 0.5,
+      size: 0.8,
     });
 
     const stars = new THREE.Points(starGeometry, starMaterial);
