@@ -62,7 +62,7 @@ export default function MainPage() {
     const starColors = [];
     const color = new THREE.Color();
 
-    for (let i = 0; i < 10000; i++) {
+    for (let i = 0; i < 8000; i++) {
       const x = Math.random() * 2000 - 1000;
       const y = Math.random() * 2000 - 1000;
       const z = Math.random() * 2000 - 1000;
@@ -121,7 +121,6 @@ export default function MainPage() {
       ref={containerRef}
       className="w-full h-screen bg-black relative flex flex-col text-white fade-in envelope"
     >
-      <div className="absolute top-0 left-0 w-full h-full stars"></div>
       <Header handleNavClick={handleNavClick} />
       <div className="flex justify-center items-center flex-grow relative z-10">
         <div className="flex justify-center items-center w-full h-[250px]">
@@ -129,7 +128,6 @@ export default function MainPage() {
         </div>
       </div>
       <div id="circle" className="circle"></div>
-      <div className="absolute top-0 left-0 w-full h-full stars-flipped"></div>
     </div>
   );
 }
