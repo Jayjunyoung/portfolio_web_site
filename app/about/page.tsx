@@ -115,9 +115,10 @@ export default function AboutPage() {
               key={index}
               className="bg-gray-700 p-5 rounded-lg shadow-lg w-auto"
             >
-              <h3 className="text-2xl text-center mb-4 font-bold">
+              <h3 className="text-2xl text-center mb-2 font-bold">
                 {info.category}
               </h3>
+              <hr className="w-full mb-3" />
               <ul className="list-disc list-inside">
                 {info.stacks.map((stack, idx) => (
                   <li key={idx} className="text-lg">

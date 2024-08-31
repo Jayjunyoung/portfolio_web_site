@@ -78,7 +78,7 @@ export const projectInfo: Array<projectInfoProps> = [
   },
   {
     projectName: "Babeduk",
-    summary: "학생과 사장님을 위한 가게 할인 정보 조회 프로젝트",
+    summary: "학생과 사장님을 위한 가게 할인 행사 조회 프로젝트",
     members: 12,
     tasks: [
       "할인 추가/삭제/조회 기능 구현",
@@ -102,5 +102,33 @@ export const projectInfo: Array<projectInfoProps> = [
     ],
     githubUrl: "https://github.com/UMC-6th-BAB/BAB-FE",
     period: "2024.07.13 - 2024.08.26",
+  },
+  {
+    projectName: "포트폴리오 자기소개 사이트",
+    summary: "자기소개 사이트",
+    members: 1,
+    tasks: [
+      "Three.js를 활용해 메인화면 애니메이션 적용",
+      "커서에 애니메이션 적용 및 커스텀 훅으로 분리하여 모든 페이지에서 사용 및 재사용성 확보",
+      "이미지 프리로딩을 활용하여 렌더링 성능 개선",
+    ],
+    stacks: [
+      "Next.js",
+      "React.js",
+      "Tailwind.css",
+      "Javascript",
+      "Typescript",
+      "Three.js",
+      "daisy-ui",
+    ],
+    images: [
+      "/discountPage1.png",
+      "/discountPage2.png",
+      "/discountPage3.png",
+      "/discountPage4.png",
+      "/discountPage5.png",
+    ],
+    githubUrl: "https://github.com/Jayjunyoung/portfolio_web_site",
+    period: "2024.07.02 - 2024.07.09",
   },
 ];

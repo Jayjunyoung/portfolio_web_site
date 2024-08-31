@@ -14,20 +14,32 @@ export const introductionTexts: IntroductionInfo["introductionTexts"] = [
 
 export const stacksInfo: IntroductionInfo["stacksInfo"] = [
   {
-    category: "Framework",
-    stacks: ["React.js", "Next.js"],
+    category: "FrontEnd",
+    stacks: [
+      "React.js",
+      "Next.js",
+      "javaScript",
+      "typeScript",
+      "tailwind.css",
+      "Styled-component",
+      "zustand",
+      "redux",
+      "recoil",
+      "React-Query",
+      "Three.js",
+    ],
   },
   {
-    category: "State-management",
-    stacks: ["zustand", "redux", "recoil"],
+    category: "BackEnd & DB",
+    stacks: ["Convex", "Workbench", "MySQL"],
   },
   {
-    category: "Languages",
-    stacks: ["javascript", "typescript"],
+    category: "Collaboration",
+    stacks: ["Notion", "Figma", "GitHub", "Slack", "ZEP", "Discord"],
   },
   {
-    category: "CSS",
-    stacks: ["tailwind.css", "Styled-component"],
+    category: "Deployment",
+    stacks: ["Vercel"],
   },
 ];
 
