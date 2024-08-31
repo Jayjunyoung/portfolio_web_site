@@ -18,9 +18,9 @@ export const stacksInfo: IntroductionInfo["stacksInfo"] = [
     stacks: [
       "React.js",
       "Next.js",
-      "javaScript",
-      "typeScript",
-      "tailwind.css",
+      "JavaScript",
+      "TypeScript",
+      "Tailwind.css",
       "Styled-component",
       "zustand",
       "redux",
