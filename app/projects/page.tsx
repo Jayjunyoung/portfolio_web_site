@@ -120,7 +120,7 @@ export default function ProjectsPage() {
               return (
                 <div
                   key={project.projectName}
-                  className={`bg-gray-800 p-5 rounded-lg shadow-lg project-card h-[564px] border-box cursor-pointer transform ${
+                  className={`bg-gray-800 p-5 rounded-lg shadow-lg project-card h-[600px] border-box cursor-pointer transform ${
                     flippedCards.includes(projectIndex) ? "flipped" : ""
                   }`}
                   onClick={() => handleCardClick(projectIndex)}
