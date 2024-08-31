@@ -19,7 +19,7 @@ export const projectInfo: Array<projectInfoProps> = [
       "Introduction, Contact Section 퍼블리싱",
       "포트폴리오 미리보기 기능 구현",
       "포트폴리오 공유 기능 구현",
-      "Favicon을 이용한 SNS 아이콘 렌더링",
+      "Favicon을 이용한 블로그 아이콘 렌더링",
     ],
     stacks: [
       "Next.js",
