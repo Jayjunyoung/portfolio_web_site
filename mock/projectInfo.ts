@@ -27,7 +27,7 @@ export const projectInfo: Array<projectInfoProps> = [
       "Tailwind.css",
       "JavaScript",
       "TypeScript",
-      "zustand",
+      "Zustand",
       "daisy-ui",
     ],
     images: [
@@ -55,7 +55,7 @@ export const projectInfo: Array<projectInfoProps> = [
       "Tailwind.css",
       "JavaScript",
       "TypeScript",
-      "zustand",
+      "Zustand",
     ],
     images: ["/tukNotion1.png", "/tukNotion2.png"],
     githubUrl:
@@ -77,7 +77,7 @@ export const projectInfo: Array<projectInfoProps> = [
       "JavaScript",
       "TypeScript",
       "Tailwind.css",
-      "zustand",
+      "Zustand",
       "mui",
     ],
     images: ["/tripRoute1.png", "/tripRoute2.png", "/tripRoute3.png"],
@@ -98,7 +98,7 @@ export const projectInfo: Array<projectInfoProps> = [
       "Styled-component",
       "JavaScript",
       "TypeScript",
-      "zustand",
+      "Zustand",
       "Date-Picker",
     ],
     images: [

@@ -8,7 +8,7 @@ export interface IntroductionInfo {
 
 export const introductionTexts: IntroductionInfo["introductionTexts"] = [
   "안녕하세요, 저는 배움이 취미인 프론트엔드 개발자 정준영 입니다.",
-  "프론트엔드 개발 내용과 알고리즘 문제 해결 과정을 블로그로 작성 중이고 현재 90+개 블로그를 작성했습니다.",
+  "프론트엔드 개발 내용과 알고리즘 문제 해결 과정을 블로그로 작성 중이고 현재 100+개 블로그를 작성했습니다.",
   "하루에 해야 할 태스크를 일정관리 툴로 작성하여 계획적으로 완료하는 성격을 가지고 있습니다.",
 ];
 
@@ -22,7 +22,7 @@ export const stacksInfo: IntroductionInfo["stacksInfo"] = [
       "TypeScript",
       "Tailwind.css",
       "Styled-component",
-      "zustand",
+      "Zustand",
       "redux",
       "recoil",
       "React-Query",
