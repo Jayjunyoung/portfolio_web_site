@@ -86,13 +86,13 @@ export default function AboutPage() {
           />
           <div className="flex flex-col w-2/4 h-full justify-center items-start ml-14 text-xl antialiased">
             <span className="h-auto text-left mt-5">
-              안녕하세요, 저는{" "}
+              안녕하세요,{" "}
               <span id="highlight-text" className="highlight-text relative">
-                배움이 취미인
+                사용자 경험 개선에 집중하는
                 <img
                   src="/arrow.png"
                   alt="Arrow"
-                  className="absolute left-[45px] top-[-25px] w-[20px] transform rotate-45"
+                  className="absolute left-[55px] top-[-25px] w-[20px] transform rotate-45"
                 />
               </span>{" "}
               프론트엔드 개발자 정준영 입니다.
