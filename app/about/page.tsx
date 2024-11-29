@@ -8,9 +8,35 @@ import {
   introductionTexts,
   stacksInfo,
 } from "@/mock/aboutInfo";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function AboutPage() {
+  //애니메이션 처리되는 스택 구별하기 위한 상태 값
+  const [hoveredItem, setHoveredItem] = useState<{
+    color: string;
+    target: HTMLElement;
+  } | null>(null);
+
+  const handleMouseEnter = (
+    color: string,
+    event: React.MouseEvent<HTMLLIElement, MouseEvent>
+  ) => {
+    const target = event.currentTarget;
+    setHoveredItem({ color, target });
+
+    // 애니메이션 적용 !
+    target.style.setProperty("--wave-color", color);
+    target.classList.add("animate-fill-bg");
+  };
+
+  const handleMouseLeave = () => {
+    if (hoveredItem?.target) {
+      const { target } = hoveredItem;
+      target.classList.remove("animate-fill-bg");
+    }
+    setHoveredItem(null);
+  };
+
   useEffect(() => {
     const sections = document.querySelectorAll(".section");
     const observer = new IntersectionObserver((entries) => {
@@ -119,9 +145,14 @@ export default function AboutPage() {
                 {info.category}
               </h3>
               <hr className="w-full mb-3" />
-              <ul className="list-disc list-inside">
+              <ul className="grid grid-cols-2 gap-4">
                 {info.stacks.map((stack, idx) => (
-                  <li key={idx} className="text-lg">
+                  <li
+                    key={idx}
+                    className="flex items-center justify-center bg-gray-600 text-white px-4 py-2 rounded-md shadow-md relative overflow-hidden transition-transform transform hover:scale-105"
+                    onMouseEnter={(e) => handleMouseEnter("#4A5568", e)}
+                    onMouseLeave={handleMouseLeave}
+                  >
                     {stack}
                   </li>
                 ))}
@@ -289,6 +320,28 @@ export default function AboutPage() {
         }
         .section.show {
           opacity: 1;
+        }
+
+        .animate-fill-bg {
+          position: relative;
+          background: radial-gradient(
+            circle,
+            var(--wave-color) 0%,
+            transparent 80%
+          );
+          background-size: 300% 300%;
+          animation: fill-bg-expand 0.5s ease-out forwards;
+        }
+
+        @keyframes fill-bg-expand {
+          0% {
+            background-size: 0% 0%;
+            opacity: 0.5;
+          }
+          100% {
+            background-size: 100% 100%;
+            opacity: 1;
+          }
         }
       `}</style>
     </div>
