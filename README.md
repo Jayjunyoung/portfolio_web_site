@@ -4,8 +4,8 @@
 https://portfolio-web-site-drab.vercel.app/ 
 <h2>사이트 사진</h2>
 
-![image](https://github.com/user-attachments/assets/5e3e8d4c-6f89-453b-b258-40ef4477f48e)
-![image](https://github.com/user-attachments/assets/49a2faf4-ae55-42ce-b3b1-b895cc43853e)
+![image](https://github.com/user-attachments/assets/c977c1f9-ee4d-4160-ada6-cae05c381050)
+![image](https://github.com/user-attachments/assets/3527830d-9b20-4f95-b7f4-9b4a21904a65)
 ![image](https://github.com/user-attachments/assets/ca2c8094-dec1-4ca1-9632-939df3969329)
 ![image](https://github.com/user-attachments/assets/7f0fd231-fabe-4bb8-9f37-e2e5eed65530)
 
