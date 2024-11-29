@@ -189,7 +189,7 @@ export default function ProjectsPage() {
             })}
       </div>
       <div
-        className={`w-full h-[280px] text-center flex justify-around items-center text-3xl transition-opacity duration-1000 ${
+        className={`w-full h-[240px] text-center flex justify-around items-center text-3xl transition-opacity duration-1000 ${
           showMessage ? "opacity-100" : "opacity-0"
         }`}
       >
