@@ -8,6 +8,7 @@ import {
   introductionTexts,
   stacksInfo,
 } from "@/mock/aboutInfo";
+import { CoordsInfo } from "@/types/coords.types";
 import { useEffect, useState } from "react";
 
 export default function AboutPage() {
@@ -16,6 +17,45 @@ export default function AboutPage() {
     color: string;
     target: HTMLElement;
   } | null>(null);
+
+  const [showArrow, setShowArrow] = useState<boolean>(false);
+  const [cursorPosition, setCursorPosition] = useState<CoordsInfo>({
+    x: 0,
+    y: 0,
+  });
+  const [isFadingOut, setIsFadingOut] = useState<boolean>(false);
+
+  const handleMouseMove = (event: MouseEvent) => {
+    const { clientX, clientY } = event;
+    setCursorPosition({ x: clientX, y: clientY });
+
+    // 특정 위치에 도달했을 때 화살표 표시
+    if (clientY > window.innerHeight * 0.7) {
+      setShowArrow(true);
+      setIsFadingOut(false);
+    } else if (showArrow) {
+      // 위로 이동 시 fade-out
+      setIsFadingOut(true);
+      setTimeout(() => setShowArrow(false), 300); // fade-out 시간 후 상태 변경
+    }
+  };
+
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setShowArrow(false);
+      setIsFadingOut(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [showArrow]);
 
   const handleMouseEnter = (
     color: string,
@@ -98,6 +138,33 @@ export default function AboutPage() {
     >
       <div className="flex flex-col justify-center items-center min-h-screen">
         <div id="circle" className="hidden circle"></div>
+        {showArrow && (
+          <div
+            className={`arrow-indicator ${
+              isFadingOut ? "fade-out" : "fade-in"
+            }`}
+            style={{
+              left: `${cursorPosition.x}px`,
+              top: `${cursorPosition.y}px`,
+            }}
+          >
+            <div className="arrow relative">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="icon"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+              </svg>
+            </div>
+          </div>
+        )}
         <h1 id="intro-text" className="text-4xl mb-2">
           About Me💻
         </h1>
@@ -341,6 +408,61 @@ export default function AboutPage() {
           100% {
             background-size: 100% 100%;
             opacity: 1;
+          }
+        }
+
+        .arrow-indicator {
+          position: fixed;
+          z-index: 1000;
+          pointer-events: none;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          color: white;
+          font-size: 14px;
+          opacity: 0;
+        }
+
+        .arrow svg {
+          width: 150px;
+          height: 150px;
+          position: absolute;
+          animation: bounce 1.5s infinite ease-in-out;
+        }
+
+        .fade-in {
+          animation: ArrowfadeIn 0.3s forwards;
+        }
+
+        .fade-out {
+          animation: ArrowfadeOut 0.3s forwards;
+        }
+
+        @keyframes ArrowfadeIn {
+          0% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+
+        @keyframes ArrowfadeOut {
+          0% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+          }
+        }
+
+        @keyframes bounce {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(10px);
           }
         }
       `}</style>
