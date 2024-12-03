@@ -103,7 +103,7 @@ export default function ProjectsPage() {
   return (
     <div
       id="project-page"
-      className="w-[100vw] h-screen overflow-auto relative bg-black text-white p-10"
+      className="w-[100vw] h-screen overflow-y-scroll no-scrollbar relative bg-black text-white p-10"
     >
       <div id="circle" className="circle"></div>
       <h1 className="text-4xl mb-10 text-center">Projects</h1>

@@ -94,7 +94,7 @@ export default function AboutPage() {
   return (
     <div
       id="about-page"
-      className="w-[100vw] h-screen bg-black text-white overflow-scroll"
+      className="w-[100vw] h-screen bg-black text-white overflow-y-scroll no-scrollbar"
     >
       <div className="flex flex-col justify-center items-center min-h-screen">
         <div id="circle" className="hidden circle"></div>

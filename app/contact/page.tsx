@@ -51,7 +51,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="w-[100vw] h-screen overflow-auto relative">
+    <div className="w-[100vw] h-screen overflow-y-scroll no-scrollbar relative">
       <div id="circle" className="circle"></div>
       <div
         id="contact-page"
