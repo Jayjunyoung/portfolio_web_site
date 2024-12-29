@@ -8,7 +8,7 @@ export interface IntroductionInfo {
 
 export const introductionTexts: IntroductionInfo["introductionTexts"] = [
   "안녕하세요, 저는 사용자 경험 개선에 집중하는 프론트엔드 개발자 정준영 입니다.",
-  "프론트엔드 개발 내용과 알고리즘 문제 해결 과정을 블로그로 작성 중이고 현재 110+개 블로그를 작성했습니다.",
+  "프론트엔드 개발 내용과 알고리즘 문제 해결 과정을 블로그로 작성 중이고 현재 115+개 블로그를 작성했습니다.",
   "하루에 해야 할 태스크를 일정관리 툴로 작성하여 계획적으로 완료하는 성격을 가지고 있습니다.",
 ];
 
