@@ -133,7 +133,7 @@ export default function MainPage() {
         toggleMenu={toggleMenu}
       />
 
-      <div className="flex justify-center items-center flex-grow relative z-10">
+      <div className="flex justify-center items-center flex-grow relative">
         <div className="flex justify-center items-center w-full h-[250px] px-4 sm:px-0">
           <Typewriter
             texts={[
