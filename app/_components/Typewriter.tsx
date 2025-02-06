@@ -10,7 +10,7 @@ interface TypewriterProps {
 
 export default function Typewriter({
   texts,
-  typingSpeed = 200,
+  typingSpeed = 120,
   pauseDelay = 1000,
 }: TypewriterProps) {
   const [displayText, setDisplayText] = useState("");

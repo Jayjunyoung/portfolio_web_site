@@ -130,8 +130,8 @@ export default function MainPage() {
               "배움이라는 취미로",
               "사용자 경험 개선에 집중하는 프론트엔드 개발자 정준영 입니다.",
             ]}
-            typingSpeed={150}
-            pauseDelay={2000}
+            typingSpeed={120}
+            pauseDelay={1000}
           />
         </div>
       </div>
