@@ -47,7 +47,7 @@ const Header: React.FC<HeaderProps> = ({
       </div>
 
       {menuOpen && (
-        <div className="sm:hidden fixed top-0 left-0 w-full h-full bg-black flex flex-col justify-center items-center z-50">
+        <div className="sm:hidden fixed top-0 left-0 w-full h-full bg-black flex flex-col justify-center items-center z-50 gap-12">
           <button
             className="absolute top-6 right-6 text-3xl"
             onClick={toggleMenu}
@@ -55,9 +55,9 @@ const Header: React.FC<HeaderProps> = ({
             ✕
           </button>
 
-          <div className="relative">
+          <div className="relative group">
             <div
-              className="my-4 text-2xl cursor-pointer group"
+              className="text-2xl cursor-pointer "
               onClick={() => handleNavClick("about")}
             >
               About
@@ -65,9 +65,9 @@ const Header: React.FC<HeaderProps> = ({
             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
           </div>
 
-          <div className="relative">
+          <div className="relative group">
             <div
-              className="my-4 text-2xl cursor-pointer"
+              className="text-2xl cursor-pointer"
               onClick={() => handleNavClick("projects")}
             >
               Projects
@@ -75,9 +75,9 @@ const Header: React.FC<HeaderProps> = ({
             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
           </div>
 
-          <div className="relative">
+          <div className="relative group">
             <div
-              className="my-4 text-2xl cursor-pointer"
+              className="text-2xl cursor-pointer"
               onClick={() => handleNavClick("contact")}
             >
               Contact
