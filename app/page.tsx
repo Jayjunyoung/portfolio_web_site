@@ -4,11 +4,17 @@ import Typewriter from "@/app/_components/Typewriter";
 import Header from "@/components/Header";
 import { useFollowMouse } from "@/hooks/useFollowMove";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 export default function MainPage() {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   const router = useRouter();
   const handleNavClick = (section: string) => {
@@ -18,6 +24,7 @@ export default function MainPage() {
     }
 
     router.push(`/${section}`);
+    setMenuOpen(false);
   };
 
   useFollowMouse("circle");
@@ -118,11 +125,16 @@ export default function MainPage() {
   return (
     <div
       ref={containerRef}
-      className="w-full h-screen bg-black relative flex flex-col text-white fade-in envelope"
+      className="w-full h-svh bg-black relative flex flex-col text-white fade-in envelope"
     >
-      <Header handleNavClick={handleNavClick} />
+      <Header
+        handleNavClick={handleNavClick}
+        menuOpen={menuOpen}
+        toggleMenu={toggleMenu}
+      />
+
       <div className="flex justify-center items-center flex-grow relative z-10">
-        <div className="flex justify-center items-center w-full h-[250px]">
+        <div className="flex justify-center items-center w-full h-[250px] px-4 sm:px-0">
           <Typewriter
             texts={[
               "배움이라는 취미로",

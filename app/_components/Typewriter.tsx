@@ -37,5 +37,5 @@ export default function Typewriter({
     }
   }, [charIndex, textIndex, texts, typingSpeed, pauseDelay]);
 
-  return <span className="text-2xl">{displayText}</span>;
+  return <span className="text-sm sm:text-2xl">{displayText}</span>;
 }
