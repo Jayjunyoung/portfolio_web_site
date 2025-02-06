@@ -10,8 +10,8 @@ interface TypewriterProps {
 
 export default function Typewriter({
   texts,
-  typingSpeed = 150,
-  pauseDelay = 2000,
+  typingSpeed = 200,
+  pauseDelay = 1000,
 }: TypewriterProps) {
   const [displayText, setDisplayText] = useState("");
   const [textIndex, setTextIndex] = useState(0);
