@@ -1,5 +1,6 @@
 "use client";
 
+import Typewriter from "@/app/_components/Typewriter";
 import Header from "@/components/Header";
 import { useFollowMouse } from "@/hooks/useFollowMove";
 import { useRouter } from "next/navigation";
@@ -8,6 +9,7 @@ import * as THREE from "three";
 
 export default function MainPage() {
   const containerRef = useRef<HTMLDivElement>(null);
+
   const router = useRouter();
   const handleNavClick = (section: string) => {
     const envelope = document.querySelector(".envelope") as HTMLElement | null;
@@ -20,8 +22,7 @@ export default function MainPage() {
     }, 500); // 애니메이션 지속 시간과 일치
   };
 
-  useFollowMouse("circle"); //커서를 따라다니는 동그라미를 커스텀 훅으로 분리
-  //다른 페이지에서의 재사용성 확보
+  useFollowMouse("circle");
 
   useEffect(() => {
     const fadeInElements = document.querySelectorAll(".fade-in");
@@ -124,7 +125,14 @@ export default function MainPage() {
       <Header handleNavClick={handleNavClick} />
       <div className="flex justify-center items-center flex-grow relative z-10">
         <div className="flex justify-center items-center w-full h-[250px]">
-          <span className="text-2xl">정준영의 포트폴리오</span>
+          <Typewriter
+            texts={[
+              "배움이라는 취미로",
+              "사용자 경험 개선에 집중하는 프론트엔드 개발자 정준영 입니다.",
+            ]}
+            typingSpeed={150}
+            pauseDelay={2000}
+          />
         </div>
       </div>
       <div id="circle" className="circle"></div>
