@@ -17,9 +17,7 @@ export default function MainPage() {
       envelope.classList.add("open-envelope");
     }
 
-    setTimeout(() => {
-      router.push(`/${section}`);
-    }, 500); // 애니메이션 지속 시간과 일치
+    router.push(`/${section}`);
   };
 
   useFollowMouse("circle");
