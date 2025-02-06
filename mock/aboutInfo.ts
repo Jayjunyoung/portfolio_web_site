@@ -2,7 +2,11 @@ export interface IntroductionInfo {
   introductionTexts: string[];
   stacksInfo: { category: string; stacks: string[] }[];
   experienceInfo: { title: string; period: string; details: string[] }[];
-  educationInfo: { institution: string; period: string; details: string[] }[];
+  educationInfo: {
+    institution: string;
+    period: string;
+    details: string[];
+  }[];
   certificateInfo: { title: string; details: string[] }[];
 }
 
@@ -87,6 +91,7 @@ export const educationInfo: IntroductionInfo["educationInfo"] = [
       "IT경영학과 전공",
       "컴퓨터공학과 자료구조 전공 과목 수강 경험 有 → Mentoring 담당",
       "부스트코스 CS50 강의 수강(CS 지식 학습 응용)",
+      "학점 : 3.89 / 4.5",
     ],
   },
 ];
