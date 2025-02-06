@@ -18,6 +18,10 @@ export default function AboutPage() {
     target: HTMLElement;
   } | null>(null);
 
+  const firstText = introductionTexts[0];
+  const highlightKeyword = "사용자 경험 개선에 집중하는";
+  const [beforeHighlight, afterHighlight] = firstText.split(highlightKeyword);
+
   const [showArrow, setShowArrow] = useState<boolean>(false);
   const [cursorPosition, setCursorPosition] = useState<CoordsInfo>({
     x: 0,
@@ -182,16 +186,16 @@ export default function AboutPage() {
           />
           <div className="flex flex-col w-2/4 h-full justify-center items-start ml-14 text-xl antialiased">
             <span className="h-auto text-left mt-5">
-              안녕하세요,{" "}
-              <span id="highlight-text" className="highlight-text relative">
-                사용자 경험 개선에 집중하는
+              {beforeHighlight}
+              <span className="highlight-text relative">
+                {highlightKeyword}
                 <img
                   src="/arrow.png"
                   alt="Arrow"
                   className="absolute left-[55px] top-[-25px] w-[20px] transform rotate-45"
                 />
               </span>{" "}
-              프론트엔드 개발자 정준영 입니다.
+              {afterHighlight}
             </span>
             {introductionTexts.slice(1).map((text, index) => (
               <span key={index} className="h-auto text-left mt-5 intro-text">
@@ -344,29 +348,6 @@ export default function AboutPage() {
 
         .highlight {
           animation: highlight 1s forwards;
-        }
-
-        @keyframes highlight {
-          0% {
-            background-color: transparent;
-            background: linear-gradient(
-              120deg,
-              transparent 0%,
-              transparent 50%,
-              skyblue 50%,
-              skyblue 100%
-            );
-            background-size: 200% 100%;
-            background-position: 100%;
-          }
-          100% {
-            background-color: skyblue;
-            background-size: 200% 100%;
-            background-position: 0%;
-            color: black;
-            font-weight: bold;
-            padding: 2px;
-          }
         }
 
         .profile-fade-in {
