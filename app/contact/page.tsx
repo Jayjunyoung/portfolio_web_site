@@ -1,13 +1,18 @@
 "use client";
 
 import { useFollowMouse } from "@/hooks/useFollowMove";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaEnvelope, FaGithub } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
 import { TypeAnimation } from "react-type-animation";
+import ContactForm from "./_components/ContactForm";
 
 export default function ContactPage() {
   const [showPopup, setShowPopup] = useState<boolean>(false);
+  const [showForm, setShowForm] = useState<boolean>(false);
+  const [isOneColumn, setIsOneColumn] = useState<boolean>(true);
+
   useEffect(() => {
     const pageElement = document.getElementById("contact-page");
     const titleElement = document.getElementById("contact-title");
@@ -51,13 +56,25 @@ export default function ContactPage() {
   };
 
   const copyToClipboard = (text: string) => {
+    setIsOneColumn(false);
+    setShowForm(true);
     navigator.clipboard.writeText(text).then(() => {
       setShowPopup(true);
       setTimeout(() => {
         setShowPopup(false);
-      }, 3000); // 3초 후에 팝업 사라짐
+      }, 3000);
     });
   };
+
+  const handleCloseForm = () => {
+    setShowForm(false);
+  };
+
+  const handleExitComplete = () => {
+    setIsOneColumn(true);
+  };
+
+  const containerClass = isOneColumn ? "one-column" : "two-column";
 
   return (
     <div className="w-[100vw] h-screen overflow-y-scroll no-scrollbar relative">
@@ -66,54 +83,80 @@ export default function ContactPage() {
         id="contact-page"
         className="w-full h-[100vh] flex justify-center items-center bg-black text-white"
       >
-        <div className="flex flex-col justify-center items-center text-center">
-          <h1 id="contact-title" className="hidden text-4xl mb-10">
-            {readyToType ? (
-              <TypeAnimation
-                sequence={["Contact", 2000]}
-                speed={30}
-                cursor={true}
-                repeat={0}
-              />
-            ) : null}
-          </h1>
-          <div className="icons-container">
-            <div className="icon-wrapper">
-              <FaGithub
-                className="icon w-full h-full"
-                onClick={() =>
-                  handleIconClick("https://github.com/jayjunyoung")
-                }
-              />
-              <span className="icon-text">GitHub</span>
-            </div>
-            <div className="icon-wrapper">
-              <img
-                src="https://t1.daumcdn.net/cfile/tistory/9935084A5B9541D014"
-                className="icon w-full h-full"
-                onClick={() =>
-                  handleIconClick("https://no2jfamily.tistory.com/")
-                }
-              />
-              <span className="icon-text">Tistory</span>
-            </div>
-            <div className="icon-wrapper">
-              <FaEnvelope
-                className="icon w-full h-full"
-                onClick={() => copyToClipboard("no2jfamily@gmail.com")}
-              />
-              <span className="icon-text">Email</span>
-            </div>
-            <div className="icon-wrapper">
-              <img
-                src="./skill-icons_instagram.png"
-                className="icon w-full h-full"
-                onClick={() =>
-                  handleIconClick("https://instagram.com/junzero.e")
-                }
-              />
-              <span className="icon-text">Instagram</span>
-            </div>
+        {/* 2열 그리드: 왼쪽은 아이콘들, 오른쪽은 폼 */}
+        <div className={`grid-container ${containerClass}`}>
+          <div className="left-column">
+            {/* 타이틀 */}
+            <h1
+              id="contact-title"
+              className="hidden text-4xl mb-10 text-center"
+            >
+              {readyToType ? (
+                <TypeAnimation
+                  sequence={["Contact", 2000]}
+                  speed={30}
+                  cursor={false}
+                  repeat={0}
+                />
+              ) : null}
+            </h1>
+
+            {/* 아이콘 컨테이너 */}
+            <motion.div
+              className="icons-container"
+              initial={{ opacity: 0, rotate: -45 }}
+              animate={{ opacity: 1, rotate: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            >
+              <IconWrapper>
+                <FaGithub
+                  className="icon w-24 h-24"
+                  onClick={() =>
+                    handleIconClick("https://github.com/jayjunyoung")
+                  }
+                />
+                <span className="icon-text">GitHub</span>
+              </IconWrapper>
+
+              <IconWrapper>
+                <img
+                  src="https://t1.daumcdn.net/cfile/tistory/9935084A5B9541D014"
+                  className="icon w-24 h-24"
+                  onClick={() =>
+                    handleIconClick("https://no2jfamily.tistory.com/")
+                  }
+                />
+                <span className="icon-text">Tistory</span>
+              </IconWrapper>
+
+              <IconWrapper>
+                <FaEnvelope
+                  className="icon w-24 h-24"
+                  onClick={() => copyToClipboard("no2jfamily@gmail.com")}
+                />
+                <span className="icon-text">Email</span>
+              </IconWrapper>
+
+              <IconWrapper>
+                <img
+                  src="./skill-icons_instagram.png"
+                  className="icon w-24 h-24"
+                  onClick={() =>
+                    handleIconClick("https://instagram.com/junzero.e")
+                  }
+                />
+                <span className="icon-text">Instagram</span>
+              </IconWrapper>
+            </motion.div>
+          </div>
+
+          {/* 폼 표시 (오른쪽 칸) */}
+          <div className="right-column">
+            <AnimatePresence onExitComplete={handleExitComplete}>
+              {showForm && (
+                <ContactForm key="contactForm" onClick={handleCloseForm} />
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>
@@ -172,18 +215,62 @@ export default function ContactPage() {
           }
         }
 
+        .grid-container {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+          align-items: center;
+        }
+        .one-column {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .one-column .left-column {
+          /* 아이콘과 타이틀 중앙 배치 */
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .one-column .right-column {
+          display: none; /* 폼 칸 숨기기 */
+        }
+
+        /* 폼이 있을 때(two-column): 2열 그리드 */
+        .two-column {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          align-items: start;
+          gap: 5rem;
+        }
+
+        /* 왼쪽 컬럼 */
+        .left-column {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        /* 오른쪽 컬럼 */
+        .right-column {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          min-height: 300px;
+        }
+
         .icons-container {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-colums: repeat(2, 1fr);
           grid-gap: 30px;
           justify-items: center;
           align-items: center;
-          width: 350px;
-          height: 350px;
           opacity: 0;
           animation: fadeIn 1.5s forwards;
           animation-delay: 2s;
-          animation: rotate 5s linear infinite;
         }
 
         .icons-fade-in {
@@ -197,24 +284,6 @@ export default function ContactPage() {
           100% {
             opacity: 1;
           }
-        }
-
-        .icon-wrapper {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          width: 85%;
-          height: 85%;
-          transition: transform 0.3s;
-          cursor: pointer;
-        }
-
-        .icon-wrapper:hover .icon {
-          transform: scale(1.25);
-        }
-
-        .icon-wrapper:hover .icon-text {
-          opacity: 1;
         }
 
         .icon {
@@ -243,3 +312,18 @@ export default function ContactPage() {
     </div>
   );
 }
+
+function IconWrapper({ children }: { children: React.ReactNode }) {
+  return (
+    <motion.div
+      whileHover={{ scale: 1.2, y: -10 }}
+      whileTap={{ scale: 0.9 }}
+      transition={{ type: "spring", stiffness: 300 }}
+      className="flex flex-col items-center"
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export { IconWrapper };
