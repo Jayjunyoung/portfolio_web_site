@@ -82,6 +82,30 @@ body {
   z-index: 99;
 }
 
+.circle-trail {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #fff, transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  opacity: 0.8;
+  z-index: 999;
+  animation: fadeOutTrail 0.5s forwards;
+}
+
+@keyframes fadeOutTrail {
+  0% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2);
+  }
+}
+
 .envelope {
   position: relative;
   overflow: hidden;
