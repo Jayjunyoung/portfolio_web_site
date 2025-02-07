@@ -4,6 +4,7 @@ import { useFollowMouse } from "@/hooks/useFollowMove";
 import { useEffect, useState } from "react";
 import { FaEnvelope, FaGithub } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
+import { TypeAnimation } from "react-type-animation";
 
 export default function ContactPage() {
   const [showPopup, setShowPopup] = useState<boolean>(false);
@@ -35,6 +36,14 @@ export default function ContactPage() {
     };
   });
 
+  const [readyToType, setReadyToType] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setReadyToType(true);
+    }, 1000);
+  }, []);
+
   useFollowMouse("circle"); // useEffect 공식문서 읽고 커스텀 훅 적용
 
   const handleIconClick = (url: string) => {
@@ -59,7 +68,14 @@ export default function ContactPage() {
       >
         <div className="flex flex-col justify-center items-center text-center">
           <h1 id="contact-title" className="hidden text-4xl mb-10">
-            Contact
+            {readyToType ? (
+              <TypeAnimation
+                sequence={["Contact", 2000]}
+                speed={30}
+                cursor={true}
+                repeat={0}
+              />
+            ) : null}
           </h1>
           <div className="icons-container">
             <div className="icon-wrapper">
