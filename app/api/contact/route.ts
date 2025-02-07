@@ -17,14 +17,15 @@ export async function POST(request: Request) {
 
     // 메일 내용
     const mailOptions = {
-      from: userEmail,
+      from: process.env.GMAIL_USER,
+      replyTo: userEmail,
       to: toEmail,
       subject: `[ContactPage] 새 문의가 도착했습니다.`,
       text: `
-        보내는 분: ${userName} (${userEmail})
-        메시지 내용:
-        ${message}
-      `,
+    보내는 분: ${userName} (${userEmail})
+    메시지 내용:
+    ${message}
+  `,
     };
 
     await transporter.sendMail(mailOptions);
