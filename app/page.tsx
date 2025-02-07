@@ -9,20 +9,22 @@ import * as THREE from "three";
 
 export default function MainPage() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const starMaterialRef = useRef<THREE.PointsMaterial | null>(null);
+  const starFieldRef = useRef<THREE.Points | null>(null);
+  const rippleScaleRef = useRef(1); // 리플(파동) 효과를 위한 스케일 값
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const router = useRouter();
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+    setMenuOpen((prev) => !prev);
   };
 
-  const router = useRouter();
   const handleNavClick = (section: string) => {
     const envelope = document.querySelector(".envelope") as HTMLElement | null;
     if (envelope) {
       envelope.classList.add("open-envelope");
     }
-
     router.push(`/${section}`);
     setMenuOpen(false);
   };
@@ -34,7 +36,7 @@ export default function MainPage() {
     fadeInElements.forEach((element) => {
       element.classList.add("fade-in-animation");
     });
-  });
+  }, []);
 
   const BACKGROUND_STAR_COLORS = ["#8fa8f6", "#b4ffb8", "#ffdd8f", "#ff8fba"];
 
@@ -49,7 +51,6 @@ export default function MainPage() {
     );
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-
     renderer.domElement.style.position = "absolute";
     renderer.domElement.style.top = "0";
     renderer.domElement.style.left = "0";
@@ -63,7 +64,6 @@ export default function MainPage() {
 
     // 별들 생성 (Starfield)
     const starGeometry = new THREE.BufferGeometry();
-
     const starVertices = [];
     const starColors = [];
     const color = new THREE.Color();
@@ -72,7 +72,6 @@ export default function MainPage() {
       const x = Math.random() * 2000 - 1000;
       const y = Math.random() * 2000 - 1000;
       const z = Math.random() * 2000 - 1000;
-
       starVertices.push(x, y, z);
 
       const starColor =
@@ -87,7 +86,6 @@ export default function MainPage() {
       "position",
       new THREE.Float32BufferAttribute(starVertices, 3)
     );
-
     starGeometry.setAttribute(
       "color",
       new THREE.Float32BufferAttribute(starColors, 3)
@@ -97,8 +95,10 @@ export default function MainPage() {
       vertexColors: true,
       size: 0.8,
     });
+    starMaterialRef.current = starMaterial;
 
     const stars = new THREE.Points(starGeometry, starMaterial);
+    starFieldRef.current = stars;
     scene.add(stars);
 
     camera.position.z = 700;
@@ -106,21 +106,39 @@ export default function MainPage() {
     const animate = function () {
       requestAnimationFrame(animate);
 
+      // 별 회전
       stars.rotation.x += 0.0005;
       stars.rotation.y += 0.0005;
+
+      rippleScaleRef.current = THREE.MathUtils.lerp(
+        rippleScaleRef.current,
+        1,
+        0.05
+      );
+      if (starFieldRef.current) {
+        starFieldRef.current.scale.set(
+          rippleScaleRef.current,
+          rippleScaleRef.current,
+          rippleScaleRef.current
+        );
+      }
 
       renderer.render(scene, camera);
     };
 
     animate();
 
-    // 컴포넌트가 해제될 때 리소스 정리
+    // 컴포넌트 언마운트 시 Three.js DOM 제거
     return () => {
       if (containerRef.current) {
         containerRef.current.removeChild(renderer.domElement);
       }
     };
   }, []);
+
+  const handleCharacterTyped = () => {
+    rippleScaleRef.current = Math.min(rippleScaleRef.current + 0.05, 1.1);
+  };
 
   return (
     <div
@@ -142,6 +160,7 @@ export default function MainPage() {
             ]}
             typingSpeed={120}
             pauseDelay={1000}
+            onType={handleCharacterTyped}
           />
         </div>
       </div>
