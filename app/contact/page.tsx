@@ -7,6 +7,7 @@ import { FaEnvelope, FaGithub } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
 import { TypeAnimation } from "react-type-animation";
 import ContactForm from "./_components/ContactForm";
+import IconWrapper from "./_components/IconWrapper";
 
 export default function ContactPage() {
   const [showPopup, setShowPopup] = useState<boolean>(false);
@@ -312,18 +313,3 @@ export default function ContactPage() {
     </div>
   );
 }
-
-function IconWrapper({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.div
-      whileHover={{ scale: 1.2, y: -10 }}
-      whileTap={{ scale: 0.9 }}
-      transition={{ type: "spring", stiffness: 300 }}
-      className="flex flex-col items-center"
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-export { IconWrapper };
