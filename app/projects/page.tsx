@@ -120,13 +120,13 @@ export default function ProjectsPage() {
               return (
                 <div
                   key={project.projectName}
-                  className={`bg-gray-800 p-5 rounded-lg shadow-lg project-card h-[600px] border-box cursor-pointer transform ${
+                  className={`bg-gray-800 p-5 rounded-lg shadow-lg project-card h-auto sm:h-[600px] border-box cursor-pointer transform ${
                     flippedCards.includes(projectIndex) ? "flipped" : ""
                   }`}
                   onClick={() => handleCardClick(projectIndex)}
                 >
                   <div className="card-front relative w-full h-full">
-                    <h2 className="text-2xl text-center mb-4">
+                    <h2 className="text-xl sm:text-2xl text-center mb-4">
                       {project.projectName}
                     </h2>
                     <div className="text-sm text-center mb-4 w-full">
@@ -171,7 +171,7 @@ export default function ProjectsPage() {
                       <img
                         src={project.images[currentSlide[projectIndex]]}
                         alt="Project Image"
-                        className="w-5/6 h-[450px] object-contain rounded-lg"
+                        className="w-5/6 h-auto sm:h-[450px] object-contain rounded-lg"
                       />
                       <button
                         onClick={(e) => {
