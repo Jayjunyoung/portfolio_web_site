@@ -31,7 +31,7 @@ export default function AnimatedText() {
       variants={containerVariants}
       initial="initial"
       animate="animate"
-      className="px-4 inline-block"
+      className="px-4 inline-block text-2xl sm:text-3xl"
     >
       {words.map((word, index) => (
         <motion.span
