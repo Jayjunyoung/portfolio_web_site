@@ -9,9 +9,10 @@ import * as THREE from "three";
 
 export default function MainPage() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const starMaterialRef = useRef<THREE.PointsMaterial | null>(null);
-  const starFieldRef = useRef<THREE.Points | null>(null);
-  const rippleScaleRef = useRef(1); // 리플(파동) 효과를 위한 스케일 값
+
+  const sceneRef = useRef<THREE.Scene | null>(null);
+  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
+  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
@@ -38,17 +39,24 @@ export default function MainPage() {
     });
   }, []);
 
+  // 별 색상 배열
   const BACKGROUND_STAR_COLORS = ["#8fa8f6", "#b4ffb8", "#ffdd8f", "#ff8fba"];
 
   useEffect(() => {
-    // Three.js 장면(scene) 설정
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x000000);
+    scene.fog = new THREE.FogExp2(0x000000, 0.0005);
+    sceneRef.current = scene; // sceneRef에 저장
+
     const camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
       0.1,
       2000
     );
+    camera.position.z = 700;
+    cameraRef.current = camera;
+
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.domElement.style.position = "absolute";
@@ -57,87 +65,139 @@ export default function MainPage() {
     renderer.domElement.style.width = "100%";
     renderer.domElement.style.height = "100%";
     renderer.domElement.style.zIndex = "-1";
+    rendererRef.current = renderer;
 
     if (containerRef.current) {
       containerRef.current.appendChild(renderer.domElement);
     }
 
-    // 별들 생성 (Starfield)
-    const starGeometry = new THREE.BufferGeometry();
-    const starVertices = [];
-    const starColors = [];
-    const color = new THREE.Color();
+    const handleResize = () => {
+      if (cameraRef.current && rendererRef.current) {
+        cameraRef.current.aspect = window.innerWidth / window.innerHeight;
+        cameraRef.current.updateProjectionMatrix();
+        rendererRef.current.setSize(window.innerWidth, window.innerHeight);
+      }
+    };
+    window.addEventListener("resize", handleResize);
 
-    for (let i = 0; i < 8000; i++) {
-      const x = Math.random() * 2000 - 1000;
-      const y = Math.random() * 2000 - 1000;
-      const z = Math.random() * 2000 - 1000;
-      starVertices.push(x, y, z);
+    // --- 헬퍼 함수: 별 필드 생성 ---
+    function createStarField(count: number, spread: number, size: number) {
+      const geometry = new THREE.BufferGeometry();
+      const vertices: number[] = [];
+      const colors: number[] = [];
+      const color = new THREE.Color();
 
-      const starColor =
-        BACKGROUND_STAR_COLORS[
-          Math.floor(Math.random() * BACKGROUND_STAR_COLORS.length)
-        ];
-      color.set(starColor);
-      starColors.push(color.r, color.g, color.b);
+      for (let i = 0; i < count; i++) {
+        const x = Math.random() * spread - spread / 2;
+        const y = Math.random() * spread - spread / 2;
+        const z = Math.random() * spread - spread / 2;
+        vertices.push(x, y, z);
+
+        const starColor =
+          BACKGROUND_STAR_COLORS[
+            Math.floor(Math.random() * BACKGROUND_STAR_COLORS.length)
+          ];
+        color.set(starColor);
+        colors.push(color.r, color.g, color.b);
+      }
+
+      geometry.setAttribute(
+        "position",
+        new THREE.Float32BufferAttribute(vertices, 3)
+      );
+      geometry.setAttribute(
+        "color",
+        new THREE.Float32BufferAttribute(colors, 3)
+      );
+
+      const material = new THREE.PointsMaterial({
+        vertexColors: true,
+        size: size,
+      });
+      return new THREE.Points(geometry, material);
     }
 
-    starGeometry.setAttribute(
-      "position",
-      new THREE.Float32BufferAttribute(starVertices, 3)
-    );
-    starGeometry.setAttribute(
-      "color",
-      new THREE.Float32BufferAttribute(starColors, 3)
-    );
+    // --- 가까운 별과 먼 별 필드 생성 ---
+    const nearStars = createStarField(4000, 1000, 1.2);
+    const farStars = createStarField(6000, 2000, 0.6);
 
-    const starMaterial = new THREE.PointsMaterial({
-      vertexColors: true,
-      size: 0.8,
-    });
-    starMaterialRef.current = starMaterial;
+    scene.add(farStars);
+    scene.add(nearStars);
 
-    const stars = new THREE.Points(starGeometry, starMaterial);
-    starFieldRef.current = stars;
-    scene.add(stars);
+    const clock = new THREE.Clock();
 
-    camera.position.z = 700;
-
-    const animate = function () {
+    // --- 애니메이션 루프 ---
+    const animate = () => {
       requestAnimationFrame(animate);
+      const delta = clock.getDelta();
 
-      // 별 회전
-      stars.rotation.x += 0.0005;
-      stars.rotation.y += 0.0005;
+      nearStars.rotation.x += 0.001;
+      nearStars.rotation.y += 0.001;
 
-      rippleScaleRef.current = THREE.MathUtils.lerp(
-        rippleScaleRef.current,
-        1,
-        0.05
-      );
-      if (starFieldRef.current) {
-        starFieldRef.current.scale.set(
-          rippleScaleRef.current,
-          rippleScaleRef.current,
-          rippleScaleRef.current
-        );
-      }
+      farStars.rotation.x += 0.0003;
+      farStars.rotation.y += 0.0003;
 
       renderer.render(scene, camera);
     };
 
     animate();
 
-    // 컴포넌트 언마운트 시 Three.js DOM 제거
     return () => {
+      window.removeEventListener("resize", handleResize);
       if (containerRef.current) {
         containerRef.current.removeChild(renderer.domElement);
       }
     };
   }, []);
 
+  const triggerParticleBurst = () => {
+    if (!sceneRef.current) return;
+
+    const count = 100;
+    const burstGeometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(count * 3);
+
+    const aspect = window.innerWidth / window.innerHeight;
+
+    for (let i = 0; i < count; i++) {
+      const r = Math.random() * 50;
+      const theta = Math.random() * 2 * Math.PI;
+      const phi = Math.random() * Math.PI;
+
+      positions[i * 3] = r * Math.sin(phi) * Math.cos(theta) * aspect;
+      positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+      positions[i * 3 + 2] = r * Math.cos(phi);
+    }
+    burstGeometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(positions, 3)
+    );
+
+    const burstMaterial = new THREE.PointsMaterial({
+      color: 0xffffff,
+      size: 2,
+      transparent: true,
+      opacity: 1,
+      blending: THREE.AdditiveBlending,
+    });
+
+    const burst = new THREE.Points(burstGeometry, burstMaterial);
+
+    burst.position.set(0, 0, 0);
+
+    sceneRef.current.add(burst);
+
+    setTimeout(() => {
+      if (sceneRef.current) {
+        sceneRef.current.remove(burst);
+        burstGeometry.dispose();
+        burstMaterial.dispose();
+      }
+    }, 500);
+  };
+
   const handleCharacterTyped = () => {
-    rippleScaleRef.current = Math.min(rippleScaleRef.current + 0.05, 1.1);
+    triggerParticleBurst();
   };
 
   return (
