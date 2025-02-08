@@ -4,6 +4,7 @@ import { projectInfo } from "@/mock/projectInfo";
 import { useEffect, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import AnimatedText from "./_components/AnimatedText";
 
 export default function ProjectsPage() {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
@@ -198,7 +199,7 @@ export default function ProjectsPage() {
             <IoIosArrowBack size={36} />
           </button>
         </div>
-        Click the Card
+        <AnimatedText />
         <div className="z-20">
           <button onClick={handleNextGroup}>
             <IoIosArrowForward size={36} />
