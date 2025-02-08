@@ -4,8 +4,13 @@
 https://portfolio-web-site-drab.vercel.app/ 
 <h2>사이트 사진</h2>
 
-![image](https://github.com/user-attachments/assets/c977c1f9-ee4d-4160-ada6-cae05c381050)
-![image](https://github.com/user-attachments/assets/3527830d-9b20-4f95-b7f4-9b4a21904a65)
-![image](https://github.com/user-attachments/assets/ca2c8094-dec1-4ca1-9632-939df3969329)
-![image](https://github.com/user-attachments/assets/7f0fd231-fabe-4bb8-9f37-e2e5eed65530)
+💻 리뉴얼 작업 진행 중
+- 메인 페이지 : 반응형 디자인 적용 및 애니메이션 고도화
+<p>
+  
+![image](https://github.com/user-attachments/assets/11444366-0517-4d3c-a533-5b68828599b3)
+
+<br>
+- Contact 페이지 : 메일 전송 기능 구현(편지지 아이콘 클릭 ➡️ 전송) <br></br>
+- 각 라우팅 페이지에 반응형 디자인 적용 예정
 
