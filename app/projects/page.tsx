@@ -115,7 +115,7 @@ export default function ProjectsPage() {
     >
       <div id="circle" className="circle"></div>
       <div className="fixed top-[70px] right-[40px] flex justify-center items-center">
-        <div className="pointer-bounce mr-4">Click ⟶</div>
+        <div className="pointer-bounce mr-4 flex items-center">Click ⟶</div>
 
         <div
           onClick={handleDownload}
