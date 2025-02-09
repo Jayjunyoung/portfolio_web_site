@@ -107,7 +107,7 @@ export default function ProjectsPage() {
       className="w-[100vw] h-screen overflow-y-scroll no-scrollbar relative bg-black text-white p-10"
     >
       <div id="circle" className="circle"></div>
-      <h1 className="text-4xl mb-10 text-center">Projects</h1>
+      <h1 className="text-3xl sm:text-4xl mb-10 text-center">Projects</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {isLoaded &&
           projectInfo

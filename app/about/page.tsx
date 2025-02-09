@@ -172,7 +172,7 @@ export default function AboutPage() {
             </div>
           </div>
         )}
-        <h1 id="intro-text" className="text-4xl mb-2">
+        <h1 id="intro-text" className="text-3xl sm:text-4xl mb-2">
           About Me💻
         </h1>
         <div
