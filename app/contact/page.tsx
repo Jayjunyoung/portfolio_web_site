@@ -82,7 +82,7 @@ export default function ContactPage() {
       <div id="circle" className="circle"></div>
       <div
         id="contact-page"
-        className="w-full h-[100vh] flex justify-center items-center bg-black text-white"
+        className="w-full h-[100vh] flex justify-center items-center bg-black text-white pt-[80px] pb-[40px] sm:pt-0 sm:pb-0"
       >
         {/* 2열 그리드: 왼쪽은 아이콘들, 오른쪽은 폼 */}
         <div className={`grid-container ${containerClass}`}>
@@ -90,13 +90,13 @@ export default function ContactPage() {
             {/* 타이틀 */}
             <h1
               id="contact-title"
-              className="hidden text-4xl mb-10 text-center"
+              className="hidden text-3xl sm:text-4xl mb-10 text-center"
             >
               {readyToType ? (
                 <TypeAnimation
                   sequence={["Contact", 2000]}
                   speed={30}
-                  cursor={false}
+                  cursor={true}
                   repeat={0}
                 />
               ) : null}
@@ -200,19 +200,6 @@ export default function ContactPage() {
           }
           100% {
             transform: translateX(0);
-          }
-        }
-
-        .text-move-up {
-          animation: moveUp 1s forwards;
-        }
-
-        @keyframes moveUp {
-          0% {
-            transform: translateY(0);
-          }
-          100% {
-            transform: translateY(-70px);
           }
         }
 
