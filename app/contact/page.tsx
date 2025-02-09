@@ -15,6 +15,45 @@ export default function ContactPage() {
   const [showForm, setShowForm] = useState<boolean>(false);
   const [isOneColumn, setIsOneColumn] = useState<boolean>(true);
 
+  const icons = [
+    {
+      key: "github",
+      component: <FaGithub className="icon w-24 h-24" />,
+      action: () => handleIconClick("https://github.com/jayjunyoung"),
+      label: "GitHub",
+    },
+    {
+      key: "tistory",
+      component: (
+        <img
+          src="https://t1.daumcdn.net/cfile/tistory/9935084A5B9541D014"
+          className="icon w-24 h-24"
+          alt="Tistory"
+        />
+      ),
+      action: () => handleIconClick("https://no2jfamily.tistory.com/"),
+      label: "Tistory",
+    },
+    {
+      key: "email",
+      component: <FaEnvelope className="icon w-24 h-24" />,
+      action: () => copyToClipboard("no2jfamily@gmail.com"),
+      label: "Email",
+    },
+    {
+      key: "instagram",
+      component: (
+        <img
+          src="./skill-icons_instagram.png"
+          className="icon w-24 h-24"
+          alt="Instagram"
+        />
+      ),
+      action: () => handleIconClick("https://instagram.com/junzero.e"),
+      label: "Instagram",
+    },
+  ];
+
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -141,42 +180,12 @@ export default function ContactPage() {
                   )}
                 </h1>
                 <div className="icons-container">
-                  <IconWrapper>
-                    <FaGithub
-                      className="icon w-24 h-24"
-                      onClick={() =>
-                        handleIconClick("https://github.com/jayjunyoung")
-                      }
-                    />
-                    <span className="icon-text">GitHub</span>
-                  </IconWrapper>
-                  <IconWrapper>
-                    <img
-                      src="https://t1.daumcdn.net/cfile/tistory/9935084A5B9541D014"
-                      className="icon w-24 h-24"
-                      onClick={() =>
-                        handleIconClick("https://no2jfamily.tistory.com/")
-                      }
-                    />
-                    <span className="icon-text">Tistory</span>
-                  </IconWrapper>
-                  <IconWrapper>
-                    <FaEnvelope
-                      className="icon w-24 h-24"
-                      onClick={() => copyToClipboard("no2jfamily@gmail.com")}
-                    />
-                    <span className="icon-text">Email</span>
-                  </IconWrapper>
-                  <IconWrapper>
-                    <img
-                      src="./skill-icons_instagram.png"
-                      className="icon w-24 h-24"
-                      onClick={() =>
-                        handleIconClick("https://instagram.com/junzero.e")
-                      }
-                    />
-                    <span className="icon-text">Instagram</span>
-                  </IconWrapper>
+                  {icons.map(({ key, component, action, label }) => (
+                    <IconWrapper key={key}>
+                      <div onClick={action}>{component}</div>
+                      <span className="icon-text">{label}</span>
+                    </IconWrapper>
+                  ))}
                 </div>
               </motion.div>
             )}
@@ -199,42 +208,12 @@ export default function ContactPage() {
                 )}
               </h1>
               <div className="icons-container">
-                <IconWrapper>
-                  <FaGithub
-                    className="icon w-24 h-24"
-                    onClick={() =>
-                      handleIconClick("https://github.com/jayjunyoung")
-                    }
-                  />
-                  <span className="icon-text">GitHub</span>
-                </IconWrapper>
-                <IconWrapper>
-                  <img
-                    src="https://t1.daumcdn.net/cfile/tistory/9935084A5B9541D014"
-                    className="icon w-24 h-24"
-                    onClick={() =>
-                      handleIconClick("https://no2jfamily.tistory.com/")
-                    }
-                  />
-                  <span className="icon-text">Tistory</span>
-                </IconWrapper>
-                <IconWrapper>
-                  <FaEnvelope
-                    className="icon w-24 h-24"
-                    onClick={() => copyToClipboard("no2jfamily@gmail.com")}
-                  />
-                  <span className="icon-text">Email</span>
-                </IconWrapper>
-                <IconWrapper>
-                  <img
-                    src="./skill-icons_instagram.png"
-                    className="icon w-24 h-24"
-                    onClick={() =>
-                      handleIconClick("https://instagram.com/junzero.e")
-                    }
-                  />
-                  <span className="icon-text">Instagram</span>
-                </IconWrapper>
+                {icons.map(({ key, component, action, label }) => (
+                  <IconWrapper key={key}>
+                    <div onClick={action}>{component}</div>
+                    <span className="icon-text">{label}</span>
+                  </IconWrapper>
+                ))}
               </div>
             </div>
             <div className="right-column flex justify-center items-center">
