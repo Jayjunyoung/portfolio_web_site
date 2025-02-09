@@ -101,12 +101,29 @@ export default function ProjectsPage() {
     );
   };
 
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = encodeURI("/정준영_FrontEnd Engineer(포트폴리오).pdf");
+    link.download = "정준영_FrontEnd Engineer(포트폴리오).pdf";
+    link.click();
+  };
+
   return (
     <div
       id="project-page"
       className="w-[100vw] h-screen overflow-y-scroll no-scrollbar relative bg-black text-white p-10"
     >
       <div id="circle" className="circle"></div>
+      <div className="fixed top-[70px] right-[40px] flex items-center">
+        <div className="pointer-bounce mr-4">Click ⟶</div>
+
+        <div
+          onClick={handleDownload}
+          className="text-white rounded-md w-16 h-12 text-sm sm:text-lg box-border flex items-center justify-center shadow-md transition cursor-pointer"
+        >
+          Portfolio
+        </div>
+      </div>
       <h1 className="text-3xl sm:text-4xl mb-10 text-center">Projects</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {isLoaded &&
@@ -255,6 +272,31 @@ export default function ProjectsPage() {
           bottom: 0;
           padding: 10px;
           box-sizing: border-box;
+        }
+        .pointer-container {
+          position: fixed;
+          top: 82px;
+          right: 125px;
+          z-index: 999;
+          pointer-events: none;
+        }
+
+        .pointer-bounce {
+          display: flex;
+          align-items: center;
+          font-size: 14px;
+          color: #4fc3f7;
+          animation: bounce 1.2s infinite;
+        }
+
+        @keyframes bounce {
+          0%,
+          100% {
+            transform: translateX(0);
+          }
+          50% {
+            transform: translateX(6px);
+          }
         }
       `}</style>
     </div>
