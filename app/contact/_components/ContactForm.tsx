@@ -51,7 +51,7 @@ export default function ContactForm({ onClick }: ContaceFormProps) {
   };
   return (
     <motion.form
-      className="bg-gray-700 p-6 rounded-md flex flex-col gap-4 items-center w-[400px] relative"
+      className="bg-gray-700 p-6 rounded-md flex flex-col justify-center gap-4 items-center w-[300px] sm:w-[400px] relative mr-4 md:mr-0"
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 50 }}
