@@ -114,7 +114,7 @@ export default function ProjectsPage() {
       className="w-[100vw] h-screen overflow-y-scroll no-scrollbar relative bg-black text-white p-10"
     >
       <div id="circle" className="circle"></div>
-      <div className="fixed top-[70px] right-[40px] flex items-center">
+      <div className="fixed top-[70px] right-[40px] flex justify-center items-center">
         <div className="pointer-bounce mr-4">Click ⟶</div>
 
         <div
