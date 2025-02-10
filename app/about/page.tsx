@@ -193,6 +193,7 @@ export default function AboutPage() {
       id="about-page"
       className="w-[100vw] h-screen bg-black text-white overflow-y-scroll no-scrollbar"
     >
+      <div id="circle" className="hidden circle"></div>
       {isMobile ? (
         // 모바일 전용 구조
         <div className="flex flex-col justify-center items-center min-h-screen">
@@ -234,7 +235,6 @@ export default function AboutPage() {
       ) : (
         // 데스크탑 전용 구조 (기존 코드)
         <div className="flex flex-col justify-center items-center min-h-screen">
-          <div id="circle" className="hidden circle"></div>
           {showArrow && (
             <div
               className={`arrow-indicator ${
