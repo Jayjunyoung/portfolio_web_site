@@ -89,9 +89,10 @@ export const educationInfo: IntroductionInfo["educationInfo"] = [
     period: "2018.03 ~ 2025.02",
     details: [
       "IT경영학과 전공",
-      "컴퓨터공학과 자료구조 전공 과목 수강 경험 有 → Mentoring 담당",
+      "컴퓨터공학과 자료구조 전공 과목 수강 경험 有 → 자료구조 Mentoring 담당",
       "부스트코스 CS50 강의 수강(CS 지식 학습 응용)",
       "학점 : 3.89 / 4.5",
+      "전공 학점 : 3.97 / 4.5",
     ],
   },
 ];
