@@ -200,27 +200,11 @@ export default function MainPage() {
     triggerParticleBurst();
   };
 
-  useEffect(() => {
-    const updateHeight = () => {
-      document.documentElement.style.setProperty(
-        "--real-vh",
-        `${window.innerHeight}px`
-      );
-    };
-
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-
-    return () => {
-      window.removeEventListener("resize", updateHeight);
-    };
-  }, []);
-
   return (
     <div
       ref={containerRef}
-      style={{ height: "var(--real-vh)" }}
       className="w-full bg-black relative flex flex-col text-white fade-in envelope gap-4"
+      style={{ height: "calc(100dvh - 60px)" }}
     >
       <Header
         handleNavClick={handleNavClick}
