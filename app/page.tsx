@@ -203,7 +203,7 @@ export default function MainPage() {
   return (
     <div
       ref={containerRef}
-      className="w-full h-svh bg-black relative flex flex-col text-white fade-in envelope gap-4"
+      className="w-full h-full bg-black relative flex flex-col text-white fade-in envelope gap-4"
     >
       <Header
         handleNavClick={handleNavClick}
