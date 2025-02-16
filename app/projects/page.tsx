@@ -109,196 +109,199 @@ export default function ProjectsPage() {
   };
 
   return (
-    <div
-      id="project-page"
-      className="w-[100vw] h-screen overflow-y-scroll no-scrollbar relative bg-black text-white p-10"
-    >
-      <div id="circle" className="circle"></div>
-      <div className="fixed top-[70px] right-[40px] flex justify-center items-center">
-        <div className="pointer-bounce mr-4 flex items-center">Click ➤</div>
-
-        <div
-          onClick={handleDownload}
-          className="text-white rounded-md w-16 h-12 text-sm sm:text-lg box-border flex items-center justify-center shadow-md transition cursor-pointer"
-        >
-          Portfolio
-        </div>
-      </div>
-      <h1 className="text-3xl sm:text-4xl mb-10 text-center">Projects</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {isLoaded &&
-          projectInfo
-            .slice(
-              currentGroup * projectsPerPage,
-              (currentGroup + 1) * projectsPerPage
-            )
-            .map((project, localIndex) => {
-              const projectIndex = currentGroup * projectsPerPage + localIndex;
-
-              return (
-                <div
-                  key={project.projectName}
-                  className={`bg-gray-800 p-5 rounded-lg shadow-lg project-card h-auto sm:min-h-[600px] lg:h-auto border-box cursor-pointer transform ${
-                    flippedCards.includes(projectIndex) ? "flipped" : ""
-                  }`}
-                  onClick={() => handleCardClick(projectIndex)}
-                >
-                  <div className="card-front relative w-full h-full">
-                    <h2 className="text-xl sm:text-2xl text-center mb-4">
-                      {project.projectName}
-                    </h2>
-                    <div className="text-sm text-center mb-4 w-full">
-                      {project.summary}
-                    </div>
-                    <div className="text-sm text-center mb-6 w-full text-sky-200 font-bold">
-                      📆 작업기간 : {project.period}
-                    </div>
-                    <div className="text-sm mb-6 w-full font-black">
-                      🙋🏻 인원 : {project.members}명
-                    </div>
-                    <h3 className="text-xl mb-2">Tasks</h3>
-                    <ul className="list-disc list-inside mb-4 min-h-[72px]">
-                      {project.tasks.map((task, idx) => (
-                        <li key={idx}>{task}</li>
-                      ))}
-                    </ul>
-                    <h3 className="text-xl mb-2">Stacks</h3>
-                    <ul className="list-disc list-inside h-auto">
-                      {project.stacks.map((stack, idx) => (
-                        <li key={idx}>{stack}</li>
-                      ))}
-                    </ul>
-                    <div className="absolute bottom-2 right-5 h-auto px-2">
-                      <FaGithub
-                        className={`text-3xl cursor-pointer hover:scale-125 transform transition 0.2s`}
-                        onClick={() => handleIconClick(project.githubUrl)}
-                      />
-                    </div>
-                  </div>
-                  <div className="card-back">
-                    <div className="relative w-full h-full flex items-center justify-center">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handlePrevSlide(projectIndex);
-                        }}
-                        className="absolute left-0 text-white z-20"
-                      >
-                        <IoIosArrowBack size={24} />
-                      </button>
-                      <img
-                        src={project.images[currentSlide[projectIndex]]}
-                        alt="Project Image"
-                        className="w-5/6 h-auto sm:h-[450px] object-contain rounded-lg"
-                      />
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleNextSlide(projectIndex);
-                        }}
-                        className="absolute right-0 text-white z-20"
-                      >
-                        <IoIosArrowForward size={24} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-      </div>
+    <>
       <div
-        className={`w-full h-[240px] text-center flex justify-around items-center text-3xl transition-opacity duration-1000 ${
-          showMessage ? "opacity-100" : "opacity-0"
-        }`}
+        id="project-page"
+        className="w-[100vw] h-screen overflow-y-scroll no-scrollbar bg-black text-white p-10"
       >
-        <div className="z-20">
-          <button onClick={handlePrevGroup}>
-            <IoIosArrowBack size={36} />
-          </button>
-        </div>
-        <AnimatedText />
-        <div className="z-20">
-          <button onClick={handleNextGroup}>
-            <IoIosArrowForward size={36} />
-          </button>
-        </div>
-      </div>
-      <style jsx>{`
-        .page-slide-in {
-          animation: slideIn 1s forwards;
-        }
+        <div className="fixed top-[70px] right-[40px] flex justify-center items-center">
+          <div className="pointer-bounce mr-4 flex items-center">Click ➤</div>
 
-        @keyframes slideIn {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(0);
-          }
-        }
-        .project-card {
-          opacity: 0;
-          transform: translateY(20px);
-          animation: fadeInUp 0.5s forwards;
-        }
+          <div
+            onClick={handleDownload}
+            className="text-white rounded-md w-16 h-12 text-sm sm:text-lg box-border flex items-center justify-center shadow-md transition cursor-pointer"
+          >
+            Portfolio
+          </div>
+        </div>
+        <h1 className="text-3xl sm:text-4xl mb-10 text-center">Projects</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {isLoaded &&
+            projectInfo
+              .slice(
+                currentGroup * projectsPerPage,
+                (currentGroup + 1) * projectsPerPage
+              )
+              .map((project, localIndex) => {
+                const projectIndex =
+                  currentGroup * projectsPerPage + localIndex;
 
-        @keyframes fadeInUp {
-          0% {
+                return (
+                  <div
+                    key={project.projectName}
+                    className={`bg-gray-800 p-5 rounded-lg shadow-lg project-card h-auto sm:min-h-[600px] lg:h-auto border-box cursor-pointer transform ${
+                      flippedCards.includes(projectIndex) ? "flipped" : ""
+                    }`}
+                    onClick={() => handleCardClick(projectIndex)}
+                  >
+                    <div className="card-front relative w-full h-full">
+                      <h2 className="text-xl sm:text-2xl text-center mb-4">
+                        {project.projectName}
+                      </h2>
+                      <div className="text-sm text-center mb-4 w-full">
+                        {project.summary}
+                      </div>
+                      <div className="text-sm text-center mb-6 w-full text-sky-200 font-bold">
+                        📆 작업기간 : {project.period}
+                      </div>
+                      <div className="text-sm mb-6 w-full font-black">
+                        🙋🏻 인원 : {project.members}명
+                      </div>
+                      <h3 className="text-xl mb-2">Tasks</h3>
+                      <ul className="list-disc list-inside mb-4 min-h-[72px]">
+                        {project.tasks.map((task, idx) => (
+                          <li key={idx}>{task}</li>
+                        ))}
+                      </ul>
+                      <h3 className="text-xl mb-2">Stacks</h3>
+                      <ul className="list-disc list-inside h-auto">
+                        {project.stacks.map((stack, idx) => (
+                          <li key={idx}>{stack}</li>
+                        ))}
+                      </ul>
+                      <div className="absolute bottom-2 right-5 h-auto px-2">
+                        <FaGithub
+                          className={`text-3xl cursor-pointer hover:scale-125 transform transition 0.2s`}
+                          onClick={() => handleIconClick(project.githubUrl)}
+                        />
+                      </div>
+                    </div>
+                    <div className="card-back">
+                      <div className="relative w-full h-full flex items-center justify-center">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handlePrevSlide(projectIndex);
+                          }}
+                          className="absolute left-0 text-white z-20"
+                        >
+                          <IoIosArrowBack size={24} />
+                        </button>
+                        <img
+                          src={project.images[currentSlide[projectIndex]]}
+                          alt="Project Image"
+                          className="w-5/6 h-auto sm:h-[450px] object-contain rounded-lg"
+                        />
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleNextSlide(projectIndex);
+                          }}
+                          className="absolute right-0 text-white z-20"
+                        >
+                          <IoIosArrowForward size={24} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+        </div>
+        <div
+          className={`w-full h-[240px] text-center flex justify-around items-center text-3xl transition-opacity duration-1000 ${
+            showMessage ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <div className="z-20">
+            <button onClick={handlePrevGroup}>
+              <IoIosArrowBack size={36} />
+            </button>
+          </div>
+          <AnimatedText />
+          <div className="z-20">
+            <button onClick={handleNextGroup}>
+              <IoIosArrowForward size={36} />
+            </button>
+          </div>
+        </div>
+        <style jsx>{`
+          .page-slide-in {
+            animation: slideIn 1s forwards;
+          }
+
+          @keyframes slideIn {
+            0% {
+              transform: translateX(-100%);
+            }
+            100% {
+              transform: translateX(0);
+            }
+          }
+          .project-card {
             opacity: 0;
             transform: translateY(20px);
+            animation: fadeInUp 0.5s forwards;
           }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .project-card.flipped .card-front {
-          transform: rotateY(180deg);
-        }
-        .project-card.flipped .card-back {
-          transform: rotateY(0deg);
-        }
-        .card-front,
-        .card-back {
-          backface-visibility: hidden;
-          transition: transform 0.6s;
-        }
-        .card-back {
-          transform: rotateY(180deg);
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          padding: 10px;
-          box-sizing: border-box;
-        }
-        .pointer-container {
-          position: fixed;
-          top: 82px;
-          right: 125px;
-          z-index: 999;
-          pointer-events: none;
-        }
 
-        .pointer-bounce {
-          display: flex;
-          align-items: center;
-          font-size: 14px;
-          color: #4fc3f7;
-          animation: bounce 1.2s infinite;
-        }
+          @keyframes fadeInUp {
+            0% {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            100% {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          .project-card.flipped .card-front {
+            transform: rotateY(180deg);
+          }
+          .project-card.flipped .card-back {
+            transform: rotateY(0deg);
+          }
+          .card-front,
+          .card-back {
+            backface-visibility: hidden;
+            transition: transform 0.6s;
+          }
+          .card-back {
+            transform: rotateY(180deg);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 10px;
+            box-sizing: border-box;
+          }
+          .pointer-container {
+            position: fixed;
+            top: 82px;
+            right: 125px;
+            z-index: 999;
+            pointer-events: none;
+          }
 
-        @keyframes bounce {
-          0%,
-          100% {
-            transform: translateX(0);
+          .pointer-bounce {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #4fc3f7;
+            animation: bounce 1.2s infinite;
           }
-          50% {
-            transform: translateX(6px);
+
+          @keyframes bounce {
+            0%,
+            100% {
+              transform: translateX(0);
+            }
+            50% {
+              transform: translateX(6px);
+            }
           }
-        }
-      `}</style>
-    </div>
+        `}</style>
+      </div>
+      <div id="circle" className="circle"></div>
+    </>
   );
 }
