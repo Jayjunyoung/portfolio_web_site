@@ -200,10 +200,27 @@ export default function MainPage() {
     triggerParticleBurst();
   };
 
+  useEffect(() => {
+    const updateHeight = () => {
+      document.documentElement.style.setProperty(
+        "--real-vh",
+        `${window.innerHeight}px`
+      );
+    };
+
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+
+    return () => {
+      window.removeEventListener("resize", updateHeight);
+    };
+  }, []);
+
   return (
     <div
       ref={containerRef}
-      className="w-full h-svh bg-black relative flex flex-col text-white fade-in envelope gap-4"
+      style={{ height: "var(--real-vh)" }}
+      className="w-full bg-black relative flex flex-col text-white fade-in envelope gap-4"
     >
       <Header
         handleNavClick={handleNavClick}
