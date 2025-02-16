@@ -203,8 +203,7 @@ export default function MainPage() {
   return (
     <div
       ref={containerRef}
-      className="w-full bg-black relative flex flex-col text-white fade-in envelope gap-4"
-      style={{ height: "calc(100dvh - 60px)" }}
+      className="w-full h-svh bg-black relative flex flex-col text-white fade-in envelope gap-4"
     >
       <Header
         handleNavClick={handleNavClick}
