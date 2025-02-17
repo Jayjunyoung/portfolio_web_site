@@ -133,7 +133,7 @@ export default function ContactPage() {
   const containerClass = isOneColumn ? "one-column" : "two-column";
 
   return (
-    <div className="w-[100vw] h-full overflow-y-scroll no-scrollbar relative">
+    <div className="w-full h-full overflow-y-scroll no-scrollbar relative">
       <div id="circle" className="circle"></div>
       <div
         id="contact-page"
