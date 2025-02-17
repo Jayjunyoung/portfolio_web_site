@@ -137,7 +137,7 @@ export default function ContactPage() {
       <div id="circle" className="circle"></div>
       <div
         id="contact-page"
-        className="w-full h-[100vh] flex justify-center items-center bg-black text-white pt-[80px] pb-[40px] sm:pt-0 sm:pb-0"
+        className="w-full h-full flex justify-center items-center bg-black text-white pt-[80px] pb-[40px] sm:pt-0 sm:pb-0"
       >
         {isMobile ? (
           // 모바일: AnimatePresence를 통해 아이콘 영역과 폼 영역이 번갈아 나타남.
