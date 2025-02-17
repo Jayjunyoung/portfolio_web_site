@@ -16,9 +16,13 @@
   }
 }
 
+html,
 body {
   color: rgb(var(--foreground-rgb));
   height: 100dvh;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
 }
 
 @layer utilities {
