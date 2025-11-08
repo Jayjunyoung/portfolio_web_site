@@ -43,6 +43,7 @@
     "@types/three": "^0.167.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
+    "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
     "postcss": "^8",
