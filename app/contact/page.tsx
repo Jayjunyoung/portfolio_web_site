@@ -11,9 +11,9 @@ import ContactForm from "./_components/ContactForm";
 import IconWrapper from "./_components/IconWrapper";
 
 export default function ContactPage() {
-  const [showPopup, setShowPopup] = useState<boolean>(false);
-  const [showForm, setShowForm] = useState<boolean>(false);
-  const [isOneColumn, setIsOneColumn] = useState<boolean>(true);
+  const [showPopup, setShowPopup] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [isOneColumn, setIsOneColumn] = useState(true);
 
   const icons = [
     {
