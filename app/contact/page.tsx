@@ -10,7 +10,7 @@ export const dynamic = "force-static";
 
 export default function ContactPage() {
   return (
-    <div className="w-full h-full overflow-y-scroll no-scrollbar relative">
+    <div className="w-full h-full overflow-y-scroll no-scrollbar relative bg-black">
       {/* 클라이언트 인터랙티브 부분 */}
       <ContactClient />
 
