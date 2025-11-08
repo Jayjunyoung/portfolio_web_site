@@ -18,7 +18,7 @@ export const introductionTexts: IntroductionInfo['introductionTexts'] = [
 
 export const stacksInfo: IntroductionInfo['stacksInfo'] = [
   {
-    category: 'FrontEnd',
+    category: 'Frontend',
     stacks: [
       'React.js',
       'Next.js',
@@ -34,7 +34,7 @@ export const stacksInfo: IntroductionInfo['stacksInfo'] = [
     ],
   },
   {
-    category: 'BackEnd & DB',
+    category: 'Backend & DB',
     stacks: ['Convex', 'Workbench', 'MySQL', 'Prisma'],
   },
   {
@@ -43,7 +43,7 @@ export const stacksInfo: IntroductionInfo['stacksInfo'] = [
   },
   {
     category: 'Deployment',
-    stacks: ['Vercel'],
+    stacks: ['Vercel, Github Actions'],
   },
 ];
 
