@@ -1,0 +1,53 @@
+name: CI/CD Pipeline
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  # 테스트 및 린트 검사
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Node.js 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 의존성 설치
+        run: npm ci
+
+      - name: 린트 검사
+        run: npm run lint
+
+      - name: 타입 체크
+        run: npx tsc --noEmit
+
+      - name: 빌드 테스트
+        run: npm run build
+
+  # Production 배포 (main 브랜치에 push될 때만)
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Vercel CLI 설치
+        run: npm install --global vercel@latest
+
+      - name: Vercel 환경 가져오기
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: 빌드
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: 배포
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
