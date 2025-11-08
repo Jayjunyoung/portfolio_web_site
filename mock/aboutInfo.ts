@@ -43,7 +43,7 @@ export const stacksInfo: IntroductionInfo['stacksInfo'] = [
   },
   {
     category: 'Deployment',
-    stacks: ['Vercel, Github Actions'],
+    stacks: ['Vercel', 'Github Actions'],
   },
 ];
 
