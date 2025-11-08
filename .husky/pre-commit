@@ -1,0 +1,11 @@
+#!/bin/sh
+
+echo "🔍 pre-commit 검사 시작..."
+
+if npx lint-staged; then
+  echo "✅ pre-commit 검사 완료"
+  exit 0
+else
+  echo "❌ pre-commit 검사 실패 (lint-staged 내 오류로 중단됨)"
+  exit 1
+fi
