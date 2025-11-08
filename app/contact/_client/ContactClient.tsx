@@ -259,17 +259,6 @@ export default function ContactClient() {
       )}
 
       <style jsx>{`
-        .page-slide-in {
-          animation: slideIn 1s forwards;
-        }
-        @keyframes slideIn {
-          0% {
-            transform: translateX(100%);
-          }
-          100% {
-            transform: translateX(0);
-          }
-        }
         .text-move-up {
           animation: moveUp 1s forwards;
         }
