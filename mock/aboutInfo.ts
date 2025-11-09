@@ -11,9 +11,9 @@ export interface IntroductionInfo {
 }
 
 export const introductionTexts: IntroductionInfo['introductionTexts'] = [
-  '안녕하세요, 저는 배움이라는 취미로 사용자 경험 개선에 집중하는 프론트엔드 개발자 정준영 입니다.',
-  '프론트엔드 개발 내용과 알고리즘 문제 해결 과정을 블로그로 작성 중이고 현재 125+개 블로그를 작성했습니다.',
-  '하루에 해야 할 태스크를 일정관리 툴로 작성하여 계획적으로 완료하는 성격을 가지고 있습니다.',
+  '배움이라는 취미로 사용자 경험 개선에 집중하는 프론트엔드 엔지니어 정준영 입니다.',
+  '개발자의 성장에 있어 기록의 힘은 강력하다고 믿기 때문에 프론트엔드 기술 개념 / 기술 적용 과정을 꾸준히 블로그에 기록 중이며 현재까지 125+개 블로그를 작성했습니다.',
+  '프론트엔드 기술 공식문서와 도서를 정독하면서 습득한 기술들을 프로젝트에서 적극적으로 활용하는 습관을 보유하고 있습니다.',
 ];
 
 export const stacksInfo: IntroductionInfo['stacksInfo'] = [
@@ -29,7 +29,7 @@ export const stacksInfo: IntroductionInfo['stacksInfo'] = [
       'Zustand',
       'redux',
       'recoil',
-      'React-Query',
+      'TanStack Query',
       'Three.js',
     ],
   },
@@ -88,7 +88,7 @@ export const educationInfo: IntroductionInfo['educationInfo'] = [
     institution: '한국공학대학교',
     period: '2018.03 ~ 2025.02',
     details: [
-      'IT경영학과 전공',
+      '경영학부 IT경영전공 졸업',
       '컴퓨터공학과 자료구조 전공 과목 수강 경험 有 → 자료구조 Mentoring 담당',
       '부스트코스 CS50 강의 수강(CS 지식 학습 응용)',
       '학점 : 3.89 / 4.5',
@@ -101,10 +101,10 @@ export const certificateInfo: IntroductionInfo['certificateInfo'] = [
   {
     title: '자격증',
     details: [
+      '정보처리기사',
       '정보처리산업기사',
       '컴퓨터활용능력 1급',
       '한국사능력검정시험 1급',
-      '정보처리기사',
       'OPIc IM2',
     ],
   },
