@@ -93,3 +93,6 @@ POST /api/contact
 ✅ 빌드 테스트
 ✅ Vercel 자동 배포
 ```
+
+<img width="757" height="236" alt="image" src="https://github.com/user-attachments/assets/5e1d19ba-891f-4a23-8f9b-8217117620f9" />
+
